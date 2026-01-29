@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-public
-class Helios {
+public class Helios {
     public static void main(String[] args) {
         String logo = """
           _____                    _____                    _____            _____                   _______                   _____
@@ -30,8 +29,8 @@ class Helios {
 
         // Level 0. Rename, Greet, Exit
         printText("Hello!, I'm Helios\nWhat can I do for you?");
-        //Level 1. Echo
-        echo();
+        Task tasks = new Task();
+        echo(tasks);
     }
 
     public static void printText(String text){
@@ -44,18 +43,27 @@ class Helios {
         System.out.println("_________________________________________");
     }
 
-    public static void echo(){
+    public static void echo(Task tasks){
         Scanner in = new Scanner(System.in);
         while (in.hasNext()){
             String cmd = in.nextLine();
             if (cmd.equals("bye")) {
                 printText("Bye. Hope to see you again soon!");
                 System.exit(0);
+            } else if (cmd.equals("list")) {
+                tasks.printTasks();
+                continue;
             }
-            printText(cmd);
+            boolean added = tasks.addTask(cmd);
+            if (added) {
+                printText("added: " + cmd);
+            } else {
+                printText("Tasks is full");
+            }
         }
-
     }
+
+
 
 
 
