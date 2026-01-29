@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public
 class Helios {
     public static void main(String[] args) {
@@ -27,16 +29,34 @@ class Helios {
         System.out.println("Hello from\n" + logo);
 
         // Level 0. Rename, Greet, Exit
+        printText("Hello!, I'm Helios\nWhat can I do for you?");
+        //Level 1. Echo
+        echo();
+    }
+
+    public static void printText(String text){
         printLine();
-        System.out.println("Hello!, I'm Helios");
-        System.out.println("What can I do for you?");
-        printLine();
-        System.out.println("Bye. Hope to see you again soon!");
+        System.out.println(text);
         printLine();
     }
 
-    public static void printLine(){
+    public static void printLine() {
         System.out.println("_________________________________________");
     }
+
+    public static void echo(){
+        Scanner in = new Scanner(System.in);
+        while (in.hasNext()){
+            String cmd = in.nextLine();
+            if (cmd.equals("bye")) {
+                printText("Bye. Hope to see you again soon!");
+                System.exit(0);
+            }
+            printText(cmd);
+        }
+
+    }
+
+
 
 }
