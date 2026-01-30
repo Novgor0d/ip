@@ -33,7 +33,7 @@ public class Helios {
         echo(tasks);
     }
 
-    public static void printText(String text){
+    public static void printText(String text){   // can abstract UI printing to another class
         printLine();
         System.out.println(text);
         printLine();
@@ -54,6 +54,30 @@ public class Helios {
                 tasks.printTasks();
                 continue;
             }
+
+            String[] parts = cmd.split(" ");
+            if (parts[0].equals("mark") && parts.length == 2){
+                int idx = Integer.parseInt(parts[1])-1;
+                if (tasks.mark(idx)){
+                    printText("Nice! I've marked this task as done:\n" + tasks.getTask(idx));
+                }
+                else {
+                    printText("Invalid task number.");
+                }
+                continue;
+            }
+
+            if (parts[0].equals("unmark") && parts.length == 2){
+                int idx = Integer.parseInt(parts[1])-1;
+                if (tasks.unmark(idx)){
+                    printText("OK, I've marked this task as not done yet:\n" + tasks.getTask(idx));
+                }
+                else {
+                    printText("Invalid task number.");
+                }
+                continue;
+            }
+
             boolean added = tasks.addTask(cmd);
             if (added) {
                 printText("added: " + cmd);
