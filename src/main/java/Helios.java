@@ -29,7 +29,7 @@ public class Helios {
 
         // Level 0. Rename, Greet, Exit
         printText("Hello!, I'm Helios\nWhat can I do for you?");
-        Task tasks = new Task();
+        TaskList tasks = new TaskList();
         echo(tasks);
     }
 
@@ -43,7 +43,7 @@ public class Helios {
         System.out.println("_________________________________________");
     }
 
-    public static void echo(Task tasks){
+    public static void echo(TaskList tasks){
         Scanner in = new Scanner(System.in);
         while (in.hasNext()){
             String cmd = in.nextLine();
