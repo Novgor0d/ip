@@ -3,8 +3,8 @@ public class TaskList {
     private int count;
 
     TaskList() {
-       tasks = new Task[100];
-       count = 0;
+        tasks = new Task[100];
+        count = 0;
     }
 
     public boolean addTask(String description) {
@@ -28,7 +28,7 @@ public class TaskList {
         Helios.printLine();
     }
 
-    public boolean mark(int index){
+    public boolean markTaskAsDone(int index) {
         if (!isValidIndex(index)) {
             return false;
         }
@@ -36,7 +36,7 @@ public class TaskList {
         return true;
     }
 
-    public boolean unmark(int index){
+    public boolean unmarkTaskAsDone(int index) {
         if (!isValidIndex(index)) {
             return false;
         }
@@ -44,7 +44,7 @@ public class TaskList {
         return true;
     }
 
-    public Task getTask(int index){
+    public Task retrieveTask(int index) {
         return tasks[index];
     }
 

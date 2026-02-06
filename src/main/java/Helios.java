@@ -10,7 +10,7 @@ public class Helios {
       /:::/    /               /::::::\\    \\            /:::/    /          \\:::\\    \\           /::::::::\\    \\           /::::::\\    \\ 
      /:::/    /               /:::/\\:::\\    \\          /:::/    /            \\:::\\    \\         /:::/~~\\:::\\    \\         /:::/\\:::\\    \\
     /:::/____/               /:::/__\\:::\\    \\        /:::/    /              \\:::\\    \\       /:::/    \\:::\\    \\       /:::/__\\:::\\    \\ 
-   /::::\\    \\              /::::\\   \\:::\\    \\      /:::/    /               /::::\\    \\     /:::/    / \\:::\\    \\      \\:::\\  \\:::\\    \\ 
+   /::::\\    \\              /::::\\   \\:::\\    \\      /:::/    /               /::::\\    \\     /:::/    / \\:::\\    \\       \\:::\\  \\:::\\    \\ 
   /::::::\\    \\   _____    /::::::\\   \\:::\\    \\    /:::/    /       ____    /::::::\\    \\   /:::/____/   \\:::\\____\\   ___\\:::\\   \\:::\\    \\ 
  /:::/\\:::\\    \\ /\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /       /\\   \\  /:::/\\:::\\    \\ |:::|    |     |:::|    | /\\   \\:::\\   \\:::\\    \\ 
 /:::/  \\:::\\    /::\\____\\/:::/__\\:::\\   \\:::\\____\\/:::/____/       /::\\   \\/:::/  \\:::\\____\\|:::|____|     |:::|    |/::\\   \\:::\\   \\:::\\____\\ 
@@ -21,8 +21,8 @@ public class Helios {
            /:::/    /        \\:::\\   \\::/    /        \\:::\\    \\       \\:::\\    \\                \\::::::::/    /         \\:::\\  /:::/    / 
           /:::/    /          \\:::\\   \\/____/          \\:::\\    \\       \\:::\\    \\                \\::::::/    /           \\:::\\/:::/    / 
          /:::/    /            \\:::\\    \\               \\:::\\    \\       \\:::\\    \\                \\::::/    /             \\::::::/    / 
-        /:::/    /              \\:::\\____\\               \\:::\\____\\       \\:::\\____\\                \\::/____/               \\::::/    / 
-        \\::/    /                \\::/    /                \\::/    /        \\::/    /                 ~~                      \\::/    / 
+        /:::/    /              \\:::\\____\\               \\:::\\____\\       \\:::\\____\\                \\::/    /               \\::::/    / 
+        \\::/    /                \\::/    /                \\::/    /        \\::/    /                 \\/____/                 \\::/    / 
          \\/____/                  \\/____/                  \\/____/          \\/____/                                           \\/____/ """;
 
         System.out.println("Hello from\n" + logo);
@@ -58,8 +58,8 @@ public class Helios {
             String[] parts = cmd.split(" ");
             if (parts[0].equals("mark") && parts.length == 2){
                 int idx = Integer.parseInt(parts[1])-1;
-                if (tasks.mark(idx)){
-                    printText("Nice! I've marked this task as done:\n" + tasks.getTask(idx));
+                if (tasks.markTaskAsDone(idx)){
+                    printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(idx));
                 }
                 else {
                     printText("Invalid task number.");
@@ -69,8 +69,8 @@ public class Helios {
 
             if (parts[0].equals("unmark") && parts.length == 2){
                 int idx = Integer.parseInt(parts[1])-1;
-                if (tasks.unmark(idx)){
-                    printText("OK, I've marked this task as not done yet:\n" + tasks.getTask(idx));
+                if (tasks.unmarkTaskAsDone(idx)){
+                    printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(idx));
                 }
                 else {
                     printText("Invalid task number.");
@@ -78,8 +78,8 @@ public class Helios {
                 continue;
             }
 
-            boolean added = tasks.addTask(cmd);
-            if (added) {
+            boolean isAdded = tasks.addTask(cmd);
+            if (isAdded) {
                 printText("added: " + cmd);
             } else {
                 printText("Tasks is full");
