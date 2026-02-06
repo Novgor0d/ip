@@ -47,10 +47,7 @@ public class Helios {
                 ui.printText("Tasks list is full");
             }
         }
+
+        ui.close();
     }
-
-
-
-
-
 }
