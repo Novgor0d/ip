@@ -4,7 +4,7 @@ public class Helios {
         ui.printLogo();
         ui.printText("Hello!, I'm Helios\nWhat can I do for you?");
 
-        TaskList tasks = new TaskList();
+        TaskList tasks = new TaskList(ui);
 
         while (true) {
             String cmd = ui.readCommand();
@@ -40,11 +40,11 @@ public class Helios {
                 continue;
             }
 
-            boolean isAdded = tasks.addTask(cmd);
-            if (isAdded) {
-                ui.printText("added: " + cmd);
+            Task addedTask = tasks.addTask(cmd);
+            if (addedTask != null) {
+                ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
             } else {
-                ui.printText("Tasks is full");
+                ui.printText("Tasks list is full");
             }
         }
     }
