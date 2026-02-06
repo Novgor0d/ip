@@ -16,7 +16,7 @@ public class TaskList {
     }
 
     public void printTasks() {
-        Helios.printLine();
+        System.out.println("_________________________________________");
         if (count == 0) {
             System.out.println("List is Empty.");
         } else {
@@ -25,7 +25,7 @@ public class TaskList {
                 System.out.println((i + 1) + "." + tasks[i]);
             }
         }
-        Helios.printLine();
+        System.out.println("_________________________________________");
     }
 
     public boolean markTaskAsDone(int index) {

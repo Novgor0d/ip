@@ -1,55 +1,17 @@
-import java.util.Scanner;
-
 public class Helios {
     public static void main(String[] args) {
-        String logo = """
-          _____                    _____                    _____            _____                   _______                   _____
-         /\\    \\                  /\\    \\                  /\\    \\          /\\    \\                 /::\\    \\                 /\\    \\
-        /::\\____\\                /::\\    \\                /::\\____\\        /::\\    \\               /::::\\    \\               /::\\    \\
-       /:::/    /               /::::\\    \\              /:::/    /        \\:::\\    \\             /::::::\\    \\             /::::\\    \\ 
-      /:::/    /               /::::::\\    \\            /:::/    /          \\:::\\    \\           /::::::::\\    \\           /::::::\\    \\ 
-     /:::/    /               /:::/\\:::\\    \\          /:::/    /            \\:::\\    \\         /:::/~~\\:::\\    \\         /:::/\\:::\\    \\
-    /:::/____/               /:::/__\\:::\\    \\        /:::/    /              \\:::\\    \\       /:::/    \\:::\\    \\       /:::/__\\:::\\    \\ 
-   /::::\\    \\              /::::\\   \\:::\\    \\      /:::/    /               /::::\\    \\     /:::/    / \\:::\\    \\       \\:::\\  \\:::\\    \\ 
-  /::::::\\    \\   _____    /::::::\\   \\:::\\    \\    /:::/    /       ____    /::::::\\    \\   /:::/____/   \\:::\\____\\   ___\\:::\\   \\:::\\    \\ 
- /:::/\\:::\\    \\ /\\    \\  /:::/\\:::\\   \\:::\\    \\  /:::/    /       /\\   \\  /:::/\\:::\\    \\ |:::|    |     |:::|    | /\\   \\:::\\   \\:::\\    \\ 
-/:::/  \\:::\\    /::\\____\\/:::/__\\:::\\   \\:::\\____\\/:::/____/       /::\\   \\/:::/  \\:::\\____\\|:::|____|     |:::|    |/::\\   \\:::\\   \\:::\\____\\ 
-\\::/    \\:::\\  /:::/    /\\:::\\   \\:::\\   \\::/    /\\:::\\    \\       \\:::\\  /:::/    \\::/    / \\:::\\    \\   /:::/    / \\:::\\   \\:::\\   \\::/    / 
- \\/____/ \\:::\\/:::/    /  \\:::\\   \\:::\\   \\/____/  \\:::\\    \\       \\:::\\/:::/    / \\/____/   \\:::\\    \\ /:::/    /   \\:::\\   \\:::\\   \\/____/ 
-          \\::::::/    /    \\:::\\   \\:::\\    \\       \\:::\\    \\       \\::::::/    /             \\:::\\    /:::/    /     \\:::\\   \\:::\\    \\ 
-           \\::::/    /      \\:::\\   \\:::\\____\\       \\:::\\    \\       \\::::/____/               \\:::\\__/:::/    /       \\:::\\   \\:::\\____\\ 
-           /:::/    /        \\:::\\   \\::/    /        \\:::\\    \\       \\:::\\    \\                \\::::::::/    /         \\:::\\  /:::/    / 
-          /:::/    /          \\:::\\   \\/____/          \\:::\\    \\       \\:::\\    \\                \\::::::/    /           \\:::\\/:::/    / 
-         /:::/    /            \\:::\\    \\               \\:::\\    \\       \\:::\\    \\                \\::::/    /             \\::::::/    / 
-        /:::/    /              \\:::\\____\\               \\:::\\____\\       \\:::\\____\\                \\::/    /               \\::::/    / 
-        \\::/    /                \\::/    /                \\::/    /        \\::/    /                 \\/____/                 \\::/    / 
-         \\/____/                  \\/____/                  \\/____/          \\/____/                                           \\/____/ """;
+        Ui ui = new Ui();
+        ui.printLogo();
+        ui.printText("Hello!, I'm Helios\nWhat can I do for you?");
 
-        System.out.println("Hello from\n" + logo);
-
-        // Level 0. Rename, Greet, Exit
-        printText("Hello!, I'm Helios\nWhat can I do for you?");
         TaskList tasks = new TaskList();
-        echo(tasks);
-    }
 
-    public static void printText(String text){   // can abstract UI printing to another class
-        printLine();
-        System.out.println(text);
-        printLine();
-    }
+        while (true) {
+            String cmd = ui.readCommand();
 
-    public static void printLine() {
-        System.out.println("_________________________________________");
-    }
-
-    public static void echo(TaskList tasks){
-        Scanner in = new Scanner(System.in);
-        while (in.hasNext()){
-            String cmd = in.nextLine();
             if (cmd.equals("bye")) {
-                printText("Bye. Hope to see you again soon!");
-                System.exit(0);
+                ui.printText("Bye. Hope to see you again soon!");
+                break;
             } else if (cmd.equals("list")) {
                 tasks.printTasks();
                 continue;
@@ -59,10 +21,10 @@ public class Helios {
             if (parts[0].equals("mark") && parts.length == 2){
                 int idx = Integer.parseInt(parts[1])-1;
                 if (tasks.markTaskAsDone(idx)){
-                    printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(idx));
+                    ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(idx));
                 }
                 else {
-                    printText("Invalid task number.");
+                    ui.printText("Invalid task number.");
                 }
                 continue;
             }
@@ -70,19 +32,19 @@ public class Helios {
             if (parts[0].equals("unmark") && parts.length == 2){
                 int idx = Integer.parseInt(parts[1])-1;
                 if (tasks.unmarkTaskAsDone(idx)){
-                    printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(idx));
+                    ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(idx));
                 }
                 else {
-                    printText("Invalid task number.");
+                    ui.printText("Invalid task number.");
                 }
                 continue;
             }
 
             boolean isAdded = tasks.addTask(cmd);
             if (isAdded) {
-                printText("added: " + cmd);
+                ui.printText("added: " + cmd);
             } else {
-                printText("Tasks is full");
+                ui.printText("Tasks is full");
             }
         }
     }
