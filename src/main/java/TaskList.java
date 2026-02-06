@@ -1,43 +1,86 @@
+import javax.print.DocFlavor;
+
 public class TaskList {
+    private static final int MAX_TASKS = 100;
+    private static final String TYPE_TODO = "todo";
+    private static final String TYPE_EVENT = "event";
+    private static final String TYPE_DEADLINE = "deadline";
+    private static final String DELIMITER_BY = " /by ";
+    private static final String DELIMITER_FROM = " /from ";
+    private static final String DELIMITER_TO = " /to ";
+
+
     private final Task[] tasks;
     private int count;
     private Ui ui;
 
     TaskList(Ui ui) {
-        tasks = new Task[100];
+        tasks = new Task[MAX_TASKS];
         count = 0;
         this.ui = ui;
     }
 
+    /**
+     * Adds a task
+     * @param input The full user command string.
+     * @return The added Task object, or null if list is full/input is invalid
+     */
     public Task addTask(String input) {
         if (count >= 100) {
             return null;
         }
 
-        String[] parts = input.split(" ", 2);
-        String type = parts[0]; //magic number change this later
-        Task task;
+        Task task = parseTask(input);
 
-        switch (type) {
-        case "todo":
-            task = new Todo(parts[1]);
-            break;
-        case "deadline":
-            String[] d1Parts = parts[1].split( " /by ", 2);
-            task = new Deadline(d1Parts[0], d1Parts[1]);
-            break;
-        case "event":
-            String[] evParts1 = parts[1].split(" /from ", 2);
-            String[] evParts2 = evParts1[1].split( " /to ", 2);
-            task = new Event(evParts1[0], evParts2[0], evParts2[1]);
-            break;
-        default:
-            task = new Task(input);
-
-
+        if (task == null) {
+            return null;
         }
+
         tasks[count++] = task;
         return task;
+    }
+
+    private Task parseTask(String input) {
+        String[] parts = input.split(" ", 2);
+        if (parts.length < 2) {
+            return null; // Invalid input being given
+        }
+
+        String type = parts[0];
+        String description = parts[1];
+
+        switch (type) {
+        case TYPE_TODO:
+            return new Todo(description);
+        case TYPE_DEADLINE:
+            return createDeadlineTask(description);
+        case TYPE_EVENT:
+            return createEventTask(description);
+        default:
+            return null; // Unknown task type
+        }
+    }
+
+    private Task createDeadlineTask(String description) {
+        String[] dlParts = description.split(DELIMITER_BY, 2);
+        if (dlParts.length < 2) {
+            return null;
+        }
+        return new Deadline(dlParts[0], dlParts[1]);
+    }
+
+    private Task createEventTask(String description) {
+        String[] fromParts = description.split(DELIMITER_FROM, 2);
+        if (fromParts.length < 2) {
+            return null;
+        }
+
+        String[] toParts = fromParts[1].split(DELIMITER_TO, 2);
+        if (toParts.length < 2) {
+            return null;
+        }
+
+        return new Event(fromParts[0], toParts[0], toParts[1]);
     }
 
     public void printTasks() {
@@ -47,7 +90,7 @@ public class TaskList {
         } else {
             ui.plainPrint("Here are the tasks in your list:");
             for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + "." + tasks[i]);
+                System.out.println((i + 1) + "." + tasks[i].toString());
             }
         }
         ui.printLine();
@@ -70,6 +113,9 @@ public class TaskList {
     }
 
     public Task retrieveTask(int index) {
+        if (!isValidIndex(index)) {
+            return null;
+        }
         return tasks[index];
     }
 
