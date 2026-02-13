@@ -49,7 +49,11 @@ public class Helios {
         }
     }
     private static void handleTaskModification(String command, Ui ui, TaskList tasks) throws DukeException {
-        String[] parts = command.split(" ");
+        String[] parts = command.trim().split(" "); // trim to avoid leading/trailing spaces
+
+        if (parts.length == 0 || parts[0].isEmpty()) {
+            throw new DukeException("Command cannot be empty");
+        }
         String action = parts[0];
 
         if (action.equals(CMD_MARK) && parts.length == 2) {
