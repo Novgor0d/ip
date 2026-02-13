@@ -1,4 +1,9 @@
-import java.util.*;
+package duke;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class Helios {
     private static final String CMD_BYE = "bye";
@@ -71,7 +76,7 @@ public class Helios {
             tasks.markTaskAsDone(index);
             ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(index));
         } catch (NumberFormatException e) {
-            throw new DukeException("Task number must be a valid integer.");
+            throw new DukeException("duke.task.Task number must be a valid integer.");
         }
     }
 
@@ -81,7 +86,7 @@ public class Helios {
             tasks.unmarkTaskAsDone(index);
             ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(index));
         } catch (NumberFormatException e) {
-            throw new DukeException("Task number must be a valid integer.");
+            throw new DukeException("duke.task.Task number must be a valid integer.");
         }
     }
 

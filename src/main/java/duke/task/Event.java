@@ -1,10 +1,12 @@
+package duke.task;
+
 public class Event extends Task {
 
         protected String from;
         protected String to;
 
     /**
-     * Constructs an Event task.
+     * Constructs an duke.task.Event task.
      * @param description The description of the event.
      * @param from  The start time or date of the event.
      * @param to    The end time or date of the event.

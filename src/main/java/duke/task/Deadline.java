@@ -1,9 +1,11 @@
+package duke.task;
+
 public class Deadline extends Task {
 
     protected String by;
 
     /**
-     * Constructs a Deadline task.
+     * Constructs a duke.task.Deadline task.
      * @param description The description of the task.
      * @param by The deadline date/time.
      */

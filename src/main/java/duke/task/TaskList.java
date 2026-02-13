@@ -1,4 +1,7 @@
-import javax.print.DocFlavor;
+package duke.task;
+
+import duke.ui.Ui;
+import duke.exception.DukeException;
 
 public class TaskList {
     private static final int MAX_TASKS = 100;
@@ -14,7 +17,7 @@ public class TaskList {
     private int count;
     private Ui ui;
 
-    TaskList(Ui ui) {
+    public TaskList(Ui ui) {
         tasks = new Task[MAX_TASKS];
         count = 0;
         this.ui = ui;
@@ -23,11 +26,11 @@ public class TaskList {
     /**
      * Adds a task
      * @param input The full user command string.
-     * @return The added Task object, or null if list is full/input is invalid
+     * @return The added duke.task.Task object, or null if list is full/input is invalid
      */
     public Task addTask(String input) throws DukeException {
         if (count >= 100) {
-            throw new DukeException("Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
+            throw new DukeException("duke.task.Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
         }
 
         Task task = parseTask(input);
@@ -43,7 +46,7 @@ public class TaskList {
     private Task parseTask(String input) throws DukeException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2) {
-            throw new DukeException("Task description cannot be empty"); // Invalid input being given
+            throw new DukeException("duke.task.Task description cannot be empty"); // Invalid input being given
         }
 
         String type = parts[0];
@@ -64,7 +67,7 @@ public class TaskList {
     private Task createDeadlineTask(String description) throws DukeException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
-            throw new DukeException("Deadline task must be in the format: deadline <desc> /by <date>");
+            throw new DukeException("duke.task.Deadline task must be in the format: deadline <desc> /by <date>");
         }
         return new Deadline(dlParts[0], dlParts[1]);
     }
@@ -72,12 +75,12 @@ public class TaskList {
     private Task createEventTask(String description) throws DukeException {
         String[] fromParts = description.split(DELIMITER_FROM, 2);
         if (fromParts.length < 2) {
-            throw new DukeException("Event task must include /from <start>");
+            throw new DukeException("duke.task.Event task must include /from <start>");
         }
 
         String[] toParts = fromParts[1].split(DELIMITER_TO, 2);
         if (toParts.length < 2) {
-            throw new DukeException("Event task must include /to <end>");
+            throw new DukeException("duke.task.Event task must include /to <end>");
         }
 
         return new Event(fromParts[0], toParts[0], toParts[1]);
