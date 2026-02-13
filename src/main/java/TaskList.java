@@ -25,9 +25,9 @@ public class TaskList {
      * @param input The full user command string.
      * @return The added Task object, or null if list is full/input is invalid
      */
-    public Task addTask(String input) {
+    public Task addTask(String input) throws DukeException {
         if (count >= 100) {
-            return null;
+            throw new DukeException("Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
         }
 
         Task task = parseTask(input);
@@ -40,10 +40,10 @@ public class TaskList {
         return task;
     }
 
-    private Task parseTask(String input) {
+    private Task parseTask(String input) throws DukeException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2) {
-            return null; // Invalid input being given
+            throw new DukeException("Task description cannot be empty"); // Invalid input being given
         }
 
         String type = parts[0];
@@ -57,27 +57,27 @@ public class TaskList {
         case TYPE_EVENT:
             return createEventTask(description);
         default:
-            return null; // Unknown task type
+            throw new DukeException("Unknown task type: " + type); // Unknown task type
         }
     }
 
-    private Task createDeadlineTask(String description) {
+    private Task createDeadlineTask(String description) throws DukeException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
-            return null;
+            throw new DukeException("Deadline task must be in the format: deadline <desc> /by <date>");
         }
         return new Deadline(dlParts[0], dlParts[1]);
     }
 
-    private Task createEventTask(String description) {
+    private Task createEventTask(String description) throws DukeException {
         String[] fromParts = description.split(DELIMITER_FROM, 2);
         if (fromParts.length < 2) {
-            return null;
+            throw new DukeException("Event task must include /from <start>");
         }
 
         String[] toParts = fromParts[1].split(DELIMITER_TO, 2);
         if (toParts.length < 2) {
-            return null;
+            throw new DukeException("Event task must include /to <end>");
         }
 
         return new Event(fromParts[0], toParts[0], toParts[1]);
@@ -96,25 +96,25 @@ public class TaskList {
         ui.printLine();
     }
 
-    public boolean markTaskAsDone(int index) {
+    public boolean markTaskAsDone(int index) throws DukeException {
         if (!isValidIndex(index)) {
-            return false;
+            throw new DukeException("Invalid task number: " + (index + 1));
         }
         tasks[index].markDone();
         return true;
     }
 
-    public boolean unmarkTaskAsDone(int index) {
+    public boolean unmarkTaskAsDone (int index) throws DukeException {
         if (!isValidIndex(index)) {
-            return false;
+            throw new DukeException("Invalid task number: " + (index + 1));
         }
         tasks[index].markUndone();
         return true;
     }
 
-    public Task retrieveTask(int index) {
+    public Task retrieveTask(int index) throws DukeException {
         if (!isValidIndex(index)) {
-            return null;
+            throw new DukeException("Invalid task number: " + (index + 1));
         }
         return tasks[index];
     }
