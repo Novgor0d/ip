@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Helios {
     private static final String CMD_BYE = "bye";
     private static final String CMD_LIST = "list";
@@ -28,21 +30,25 @@ public class Helios {
      * @return false if the program should terminate, true otherwise.
      */
     private static boolean executeCommand(String command, Ui ui, TaskList tasks) {
-        if (command.equals(CMD_BYE)) {
-            ui.printGoodbyeMessage();
-            return false;
-        }
+        try {
+            if (command.equals(CMD_BYE)) {
+                ui.printGoodbyeMessage();
+                return false;
+            }
 
-        if (command.equals(CMD_LIST)) {
-            tasks.printTasks();
+            if (command.equals(CMD_LIST)) {
+                tasks.printTasks();
+                return true;
+            }
+
+            handleTaskModification(command, ui, tasks);
+            return true;
+        } catch (DukeException e) {
+            ui.printText(e.getMessage());
             return true;
         }
-
-        handleTaskModification(command, ui, tasks);
-        return true;
     }
-
-    private static void handleTaskModification(String command, Ui ui, TaskList tasks) {
+    private static void handleTaskModification(String command, Ui ui, TaskList tasks) throws DukeException {
         String[] parts = command.split(" ");
         String action = parts[0];
 
@@ -55,74 +61,28 @@ public class Helios {
         }
     }
 
-    private static void processMarking(String taskNumberStr, TaskList tasks, Ui ui) {
-        int index = Integer.parseInt(taskNumberStr) - 1;
-        if (tasks.markTaskAsDone(index)) {
+    private static void processMarking(String taskNumberStr, TaskList tasks, Ui ui) throws DukeException {
+        try {
+            int index = Integer.parseInt(taskNumberStr) - 1;
+            tasks.markTaskAsDone(index);
             ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(index));
-        } else {
-            ui.printText("Invalid task number.");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task number must be a valid integer.");
         }
     }
 
-    private static void processUnmarking(String taskNumberStr, TaskList tasks, Ui ui) {
-        int index = Integer.parseInt(taskNumberStr) - 1;
-        if (tasks.unmarkTaskAsDone(index)) {
+    private static void processUnmarking(String taskNumberStr, TaskList tasks, Ui ui) throws DukeException {
+        try {
+            int index = Integer.parseInt(taskNumberStr) - 1;
+            tasks.unmarkTaskAsDone(index);
             ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(index));
-        } else {
-            ui.printText("Invalid task number.");
+        } catch (NumberFormatException e) {
+            throw new DukeException("Task number must be a valid integer.");
         }
     }
 
-    private static void processAddTask(String command, TaskList tasks, Ui ui) {
+    private static void processAddTask(String command, TaskList tasks, Ui ui) throws DukeException {
         Task addedTask = tasks.addTask(command);
-        if (addedTask != null) {
-            ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
-        } else {
-            ui.printText("Tasks list is full or input is invalid");
-        }
+        ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
     }
 }
-
-
-
-/* while (true) {
-String cmd = ui.readCommand();
-
-            if (cmd.equals("bye")) {
-        ui.printText("Bye. Hope to see you again soon!");
-                break;
-                        } else if (cmd.equals("list")) {
-        tasks.printTasks();
-                continue;
-                        }
-
-String[] parts = cmd.split(" ");
-            if (parts[0].equals("mark") && parts.length == 2){
-int idx = Integer.parseInt(parts[1])-1;
-                if (tasks.markTaskAsDone(idx)){
-        ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(idx));
-        }
-        else {
-        ui.printText("Invalid task number.");
-                }
-                        continue;
-                        }
-
-                        if (parts[0].equals("unmark") && parts.length == 2){
-int idx = Integer.parseInt(parts[1])-1;
-                if (tasks.unmarkTaskAsDone(idx)){
-        ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(idx));
-        }
-        else {
-        ui.printText("Invalid task number.");
-                }
-                        continue;
-                        }
-
-Task addedTask = tasks.addTask(cmd);
-            if (addedTask != null) {
-        ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
-        } else {
-        ui.printText("Tasks list is full");
-            }
-                    } */
