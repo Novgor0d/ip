@@ -127,4 +127,11 @@ public class TaskList {
         return tasks.size();
     }
 
+    public Task deleteTask(int index) throws HeliosException {
+        if (!isValidIndex(index)) {
+            throw new HeliosException("Invalid task number: " + (index + 1));
+        }
+        return tasks.remove(index);
+    }
+
 }

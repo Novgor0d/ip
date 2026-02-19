@@ -10,6 +10,7 @@ public class Helios {
     private static final String CMD_LIST = "list";
     private static final String CMD_MARK = "mark";
     private static final String CMD_UNMARK = "unmark";
+    private static final String CMD_DELETE = "delete";
 
     public static void main(String[] args) {
         Ui ui = new Ui();
@@ -65,8 +66,20 @@ public class Helios {
             processMarking(parts[1], tasks, ui);
         } else if (action.equals(CMD_UNMARK) && parts.length == 2) {
             processUnmarking(parts[1], tasks, ui);
+        } else if (action.equals(CMD_DELETE) && parts.length == 2) {
+            processDelete(parts[1], tasks, ui);
         } else {
             processAddTask(command, tasks, ui);
+        }
+    }
+
+    private static void processDelete(String taskNumberStr, TaskList tasks, Ui ui) throws HeliosException {
+        try {
+            int index = Integer.parseInt(taskNumberStr) - 1;
+            Task removed = tasks.deleteTask(index);
+            ui.printText("Noted. I've removed this task:\n" + removed + "\nNow you have " + tasks.getCount() + " tasks in the list.");
+        } catch (NumberFormatException e) {
+            throw new HeliosException("Task number must be a valid integer.");
         }
     }
 
