@@ -8,13 +8,13 @@ if exist ACTUAL.TXT del ACTUAL.TXT
 
 REM compile the code into the bin folder
 javac -cp ..\src\main\java -Xlint:none -d ..\bin ^
-  ..\src\main\java\duke\Helios.java ^
-  ..\src\main\java\duke\ui\Ui.java ^
-  ..\src\main\java\duke\task\Task.java ^
-  ..\src\main\java\duke\task\Todo.java ^
-  ..\src\main\java\duke\task\Deadline.java ^
-  ..\src\main\java\duke\task\Event.java ^
-  ..\src\main\java\duke\task\TaskList.java
+  ..\src\main\java\helios\Helios.java ^
+  ..\src\main\java\helios\ui\Ui.java ^
+  ..\src\main\java\helios\task\Task.java ^
+  ..\src\main\java\helios\task\Todo.java ^
+  ..\src\main\java\helios\task\Deadline.java ^
+  ..\src\main\java\helios\task\Event.java ^
+  ..\src\main\java\helios\task\TaskList.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
@@ -22,7 +22,7 @@ IF ERRORLEVEL 1 (
 REM no error here, errorlevel == 0
 
 REM run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ..\bin duke.Helios < input.txt > ACTUAL.TXT
+java -classpath ..\bin helios.Helios < input.txt > ACTUAL.TXT
 
 REM compare the output to the expected output
 FC ACTUAL.TXT EXPECTED.TXT

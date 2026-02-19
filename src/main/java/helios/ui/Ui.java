@@ -1,4 +1,4 @@
-package duke.ui;
+package helios.ui;
 
 import java.util.Scanner;
 
@@ -32,7 +32,7 @@ public class Ui {
 
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + logo);
-        printText("Hello!, I'm duke.Helios\nWhat can I do for you?");
+        printText("Hello!, I'm Helios\nWhat can I do for you?");
     }
 
     public void printGoodbyeMessage() {

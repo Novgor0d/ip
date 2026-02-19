@@ -1,9 +1,9 @@
-package duke.task;
+package helios.task;
 
 public class Todo extends Task {
 
     /**
-     * Constructs a duke.task.Todo task.
+     * Constructs a Todo task.
      * @param description The description of the task.
      */
     public Todo(String description) {

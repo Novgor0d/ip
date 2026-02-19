@@ -1,4 +1,4 @@
-package duke.task;
+package helios.task;
 
 public class Event extends Task {
 
@@ -6,7 +6,7 @@ public class Event extends Task {
         protected String to;
 
     /**
-     * Constructs an duke.task.Event task.
+     * Constructs an Event task.
      * @param description The description of the event.
      * @param from  The start time or date of the event.
      * @param to    The end time or date of the event.

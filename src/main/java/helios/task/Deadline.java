@@ -1,11 +1,11 @@
-package duke.task;
+package helios.task;
 
 public class Deadline extends Task {
 
     protected String by;
 
     /**
-     * Constructs a duke.task.Deadline task.
+     * Constructs a Deadline task.
      * @param description The description of the task.
      * @param by The deadline date/time.
      */

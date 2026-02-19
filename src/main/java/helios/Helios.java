@@ -1,9 +1,9 @@
-package duke;
+package helios;
 
-import duke.exception.DukeException;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.ui.Ui;
+import helios.exception.HeliosException;
+import helios.task.Task;
+import helios.task.TaskList;
+import helios.ui.Ui;
 
 public class Helios {
     private static final String CMD_BYE = "bye";
@@ -48,16 +48,16 @@ public class Helios {
 
             handleTaskModification(command, ui, tasks);
             return true;
-        } catch (DukeException e) {
+        } catch (HeliosException e) {
             ui.printText(e.getMessage());
             return true;
         }
     }
-    private static void handleTaskModification(String command, Ui ui, TaskList tasks) throws DukeException {
+    private static void handleTaskModification(String command, Ui ui, TaskList tasks) throws HeliosException {
         String[] parts = command.trim().split(" "); // trim to avoid leading/trailing spaces
 
         if (parts.length == 0 || parts[0].isEmpty()) {
-            throw new DukeException("Command cannot be empty");
+            throw new HeliosException("Command cannot be empty");
         }
         String action = parts[0];
 
@@ -70,27 +70,27 @@ public class Helios {
         }
     }
 
-    private static void processMarking(String taskNumberStr, TaskList tasks, Ui ui) throws DukeException {
+    private static void processMarking(String taskNumberStr, TaskList tasks, Ui ui) throws HeliosException {
         try {
             int index = Integer.parseInt(taskNumberStr) - 1;
             tasks.markTaskAsDone(index);
             ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(index));
         } catch (NumberFormatException e) {
-            throw new DukeException("duke.task.Task number must be a valid integer.");
+            throw new HeliosException("Task number must be a valid integer.");
         }
     }
 
-    private static void processUnmarking(String taskNumberStr, TaskList tasks, Ui ui) throws DukeException {
+    private static void processUnmarking(String taskNumberStr, TaskList tasks, Ui ui) throws HeliosException {
         try {
             int index = Integer.parseInt(taskNumberStr) - 1;
             tasks.unmarkTaskAsDone(index);
             ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(index));
         } catch (NumberFormatException e) {
-            throw new DukeException("duke.task.Task number must be a valid integer.");
+            throw new HeliosException("Task number must be a valid integer.");
         }
     }
 
-    private static void processAddTask(String command, TaskList tasks, Ui ui) throws DukeException {
+    private static void processAddTask(String command, TaskList tasks, Ui ui) throws HeliosException {
         Task addedTask = tasks.addTask(command);
         ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
     }

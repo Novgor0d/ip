@@ -1,7 +1,7 @@
-package duke.task;
+package helios.task;
 
-import duke.ui.Ui;
-import duke.exception.DukeException;
+import helios.ui.Ui;
+import helios.exception.HeliosException;
 
 public class TaskList {
     private static final int MAX_TASKS = 100;
@@ -26,11 +26,11 @@ public class TaskList {
     /**
      * Adds a task
      * @param input The full user command string.
-     * @return The added duke.task.Task object, or null if list is full/input is invalid
+     * @return The added Task object, or null if list is full/input is invalid
      */
-    public Task addTask(String input) throws DukeException {
-        if (count >= 100) {
-            throw new DukeException("duke.task.Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
+    public Task addTask(String input) throws HeliosException {
+        if (count >= MAX_TASKS) {
+            throw new HeliosException("Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
         }
 
         Task task = parseTask(input);
@@ -43,10 +43,10 @@ public class TaskList {
         return task;
     }
 
-    private Task parseTask(String input) throws DukeException {
+    private Task parseTask(String input) throws HeliosException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2) {
-            throw new DukeException("duke.task.Task description cannot be empty"); // Invalid input being given
+            throw new HeliosException("Task description cannot be empty"); // Invalid input being given
         }
 
         String type = parts[0];
@@ -60,27 +60,27 @@ public class TaskList {
         case TYPE_EVENT:
             return createEventTask(description);
         default:
-            throw new DukeException("Unknown task type: " + type); // Unknown task type
+            throw new HeliosException("Unknown task type: " + type); // Unknown task type
         }
     }
 
-    private Task createDeadlineTask(String description) throws DukeException {
+    private Task createDeadlineTask(String description) throws HeliosException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
-            throw new DukeException("duke.task.Deadline task must be in the format: deadline <desc> /by <date>");
+            throw new HeliosException("Deadline task must be in the format: deadline <desc> /by <date>");
         }
         return new Deadline(dlParts[0], dlParts[1]);
     }
 
-    private Task createEventTask(String description) throws DukeException {
+    private Task createEventTask(String description) throws HeliosException {
         String[] fromParts = description.split(DELIMITER_FROM, 2);
         if (fromParts.length < 2) {
-            throw new DukeException("duke.task.Event task must include /from <start>");
+            throw new HeliosException("Event task must include /from <start>");
         }
 
         String[] toParts = fromParts[1].split(DELIMITER_TO, 2);
         if (toParts.length < 2) {
-            throw new DukeException("duke.task.Event task must include /to <end>");
+            throw new HeliosException("Event task must include /to <end>");
         }
 
         return new Event(fromParts[0], toParts[0], toParts[1]);
@@ -99,25 +99,25 @@ public class TaskList {
         ui.printLine();
     }
 
-    public boolean markTaskAsDone(int index) throws DukeException {
+    public boolean markTaskAsDone(int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new DukeException("Invalid task number: " + (index + 1));
+            throw new HeliosException("Invalid task number: " + (index + 1));
         }
         tasks[index].markDone();
         return true;
     }
 
-    public boolean unmarkTaskAsDone (int index) throws DukeException {
+    public boolean unmarkTaskAsDone (int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new DukeException("Invalid task number: " + (index + 1));
+            throw new HeliosException("Invalid task number: " + (index + 1));
         }
         tasks[index].markUndone();
         return true;
     }
 
-    public Task retrieveTask(int index) throws DukeException {
+    public Task retrieveTask(int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new DukeException("Invalid task number: " + (index + 1));
+            throw new HeliosException("Invalid task number: " + (index + 1));
         }
         return tasks[index];
     }
