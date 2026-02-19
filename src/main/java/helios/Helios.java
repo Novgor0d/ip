@@ -81,9 +81,8 @@ public class Helios {
             processMarking(parts[1], tasks, ui, storage);
         } else if (action.equals(CMD_UNMARK) && parts.length == 2) {
             processUnmarking(parts[1], tasks, ui, storage);
-            processUnmarking(parts[1], tasks, ui);
         } else if (action.equals(CMD_DELETE) && parts.length == 2) {
-            processDelete(parts[1], tasks, ui);
+            processDelete(parts[1], tasks, ui, storage);
         } else {
             processAddTask(command, tasks, ui, storage);
         }
@@ -135,13 +134,20 @@ public class Helios {
         }
     }
 
-    private static void processDelete(String taskNumberStr, TaskList tasks, Ui ui) throws HeliosException {
+    private static void processDelete(String taskNumberStr, TaskList tasks, Ui ui, Storage storage) throws HeliosException {
         try {
             int index = Integer.parseInt(taskNumberStr) - 1;
             Task removed = tasks.deleteTask(index);
             ui.printText("Noted. I've removed this task:\n" + removed + "\nNow you have " + tasks.getCount() + " tasks in the list.");
         } catch (NumberFormatException e) {
             throw new HeliosException("Task number must be a valid integer.");
+        }
+
+        // Saving after deletion
+        try {
+            storage.save(tasks.getTasks());
+        } catch (IOException e) {
+            ui.printText("Error saving data.");
         }
     }
 }

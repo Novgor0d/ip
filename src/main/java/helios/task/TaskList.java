@@ -21,7 +21,7 @@ public class TaskList {
 
     public TaskList(Ui ui, List<Task> loadedTasks) {
         this.ui = ui;
-        this.tasks = new ArrayList<>(loadedTasks); // copies the preloaded tasks form storage
+        this.tasks = new ArrayList<>(loadedTasks); // copies the preloaded tasks from storage
     }
 
     /**
@@ -133,7 +133,6 @@ public class TaskList {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
         return tasks.remove(index);
-        return tasks.size();
     }
 
     public List<Task> getTasks() {
