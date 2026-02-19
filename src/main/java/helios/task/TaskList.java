@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
+
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
     private static final String TYPE_DEADLINE = "deadline";
@@ -18,9 +19,9 @@ public class TaskList {
     private final List<Task> tasks;
     private Ui ui;
 
-    public TaskList(Ui ui) {
-        tasks = new ArrayList<>();
+    public TaskList(Ui ui, List<Task> loadedTasks) {
         this.ui = ui;
+        this.tasks = new ArrayList<>(loadedTasks); // copies the preloaded tasks form storage
     }
 
     /**
@@ -132,6 +133,11 @@ public class TaskList {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
         return tasks.remove(index);
+        return tasks.size();
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
     }
 
 }
