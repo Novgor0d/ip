@@ -16,7 +16,6 @@ public class TaskList {
 
 
     private final List<Task> tasks;
-    private int count;
     private Ui ui;
 
     public TaskList(Ui ui, List<Task> loadedTasks) {
@@ -91,7 +90,7 @@ public class TaskList {
         } else {
             ui.plainPrint("Here are the tasks in your list:");
             for (int i = 0; i < tasks.size(); i++) {
-                System.out.println((i + 1) + "." + tasks.get(i).toString());
+                System.out.println((i + 1) + "." + tasks.get(i));
             }
         }
         ui.printLine();
@@ -125,7 +124,7 @@ public class TaskList {
     }
 
     public int getCount() {
-        return count;
+        return tasks.size();
     }
 
     public List<Task> getTasks() {

@@ -63,26 +63,25 @@ public class Storage {
             Todo todo = new Todo(parts[2]);
             if (isDone) {
                 todo.markDone();
-                return todo;
             }
+            return todo;
 
         case "D":
             Deadline deadline = new Deadline(parts[2], parts[3]);
             if (isDone) {
                 deadline.markDone();
-                return deadline;
             }
+            return deadline;
 
         case "E":
             Event event = new Event(parts[2], parts[3], parts[4]);
             if (isDone) {
                 event.markDone();
-                return event;
             }
+            return event;
 
         default:
             throw new HeliosException("Unknown task type");
-
         }
     }
 
@@ -95,7 +94,7 @@ public class Storage {
 
         if (task instanceof Deadline) {
             Deadline d = (Deadline) task;
-            return "D | " + status + " | " + d.getBy() + " | " + d.getBy();
+            return "D | " + status + " | " + d.getDescription() + " | " + d.getBy();
         }
 
         if (task instanceof Event) {

@@ -19,7 +19,7 @@ public class Helios {
         Ui ui = new Ui();
         ui.printWelcomeMessage();
 
-        Storage storage = new Storage("./data/helios,txt");
+        Storage storage = new Storage("./data/helios.txt");
 
         List<Task> loadedTasks;
 
