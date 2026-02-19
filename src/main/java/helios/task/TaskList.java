@@ -3,8 +3,10 @@ package helios.task;
 import helios.ui.Ui;
 import helios.exception.HeliosException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskList {
-    private static final int MAX_TASKS = 100;
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
     private static final String TYPE_DEADLINE = "deadline";
@@ -13,13 +15,11 @@ public class TaskList {
     private static final String DELIMITER_TO = " /to ";
 
 
-    private final Task[] tasks;
-    private int count;
+    private final List<Task> tasks;
     private Ui ui;
 
     public TaskList(Ui ui) {
-        tasks = new Task[MAX_TASKS];
-        count = 0;
+        tasks = new ArrayList<>();
         this.ui = ui;
     }
 
@@ -29,9 +29,6 @@ public class TaskList {
      * @return The added Task object, or null if list is full/input is invalid
      */
     public Task addTask(String input) throws HeliosException {
-        if (count >= MAX_TASKS) {
-            throw new HeliosException("Task list is full. Cannot add more than " + MAX_TASKS + " tasks.");
-        }
 
         Task task = parseTask(input);
 
@@ -39,7 +36,7 @@ public class TaskList {
             return null;
         }
 
-        tasks[count++] = task;
+        tasks.add(task);
         return task;
     }
 
@@ -88,12 +85,12 @@ public class TaskList {
 
     public void printTasks() {
         ui.printLine();
-        if (count == 0) {
+        if (tasks.isEmpty()) {
             ui.plainPrint("List is Empty.");
         } else {
             ui.plainPrint("Here are the tasks in your list:");
-            for (int i = 0; i < count; i++) {
-                System.out.println((i + 1) + "." + tasks[i].toString());
+            for (int i = 0; i < tasks.size(); i++) {
+                ui.plainPrint((i + 1) + "." + tasks.get(i).toString());
             }
         }
         ui.printLine();
@@ -103,7 +100,7 @@ public class TaskList {
         if (!isValidIndex(index)) {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
-        tasks[index].markDone();
+        tasks.get(index).markDone();
         return true;
     }
 
@@ -111,7 +108,7 @@ public class TaskList {
         if (!isValidIndex(index)) {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
-        tasks[index].markUndone();
+        tasks.get(index).markUndone();
         return true;
     }
 
@@ -119,15 +116,22 @@ public class TaskList {
         if (!isValidIndex(index)) {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
-        return tasks[index];
+        return tasks.get(index);
     }
 
     private boolean isValidIndex(int index) {
-        return index >= 0 && index < count;
+        return index >= 0 && index < tasks.size();
     }
 
     public int getCount() {
-        return count;
+        return tasks.size();
+    }
+
+    public Task deleteTask(int index) throws HeliosException {
+        if (!isValidIndex(index)) {
+            throw new HeliosException("Invalid task number: " + (index + 1));
+        }
+        return tasks.remove(index);
     }
 
 }
