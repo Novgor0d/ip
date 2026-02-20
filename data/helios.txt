@@ -1,0 +1,2 @@
+T | 1 | buy groceries
+E | 1 | Conference | 2026-03-01 | 2026-03-03

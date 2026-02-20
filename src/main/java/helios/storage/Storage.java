@@ -27,11 +27,8 @@ public class Storage {
         List<String> lines = Files.readAllLines(filePath);
         for (String line : lines) {
             try {
-                Task task = parseLine(line);
-                if (tasks != null) {
-                    tasks.add(task);
-                }
-            } catch (Exception e) {
+                tasks.add(parseLine(line));
+            } catch (HeliosException e) {
                 System.out.println("Skipping corrupted line: " + line);
             }
         }
