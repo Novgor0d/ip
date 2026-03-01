@@ -117,7 +117,8 @@ public class Controller {
     }
 
     private void processAddTask(String command) throws HeliosException {
-        Task addedTask = tasks.addTask(command);
+        Task task = Parser.parseTask(command);
+        Task addedTask = tasks.addTask(task);
         ui.printText("Got it. I've added this task:\n " + addedTask + "\nNow you have " + tasks.getCount() + " tasks in the list.");
 
         // Saving after adding
