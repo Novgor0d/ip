@@ -1,6 +1,10 @@
 package helios.ui;
 
+import helios.task.Task;
+import helios.task.TaskList;
+
 import java.util.Scanner;
+import java.util.List;
 
 public class Ui {
     private static final String LINE_SEPARATOR = ("_________________________________________");
@@ -72,6 +76,20 @@ public class Ui {
     public String readCommand() {
         System.out.print(PROMPT);
         return in.nextLine();
+    }
+
+    public void displayTasks(TaskList taskList) {
+        printLine();
+        List<Task> tasks = taskList.getTasks();
+        if (tasks.isEmpty()) {
+            plainPrint("List is Empty");
+        } else {
+            plainPrint("Here are the tasks in your list:");
+            for (int i = 0; i < tasks.size(); i++) {
+                plainPrint((i+1) + "." + tasks.get(i));
+            }
+        }
+        printLine();
     }
 
     public void close() {

@@ -33,10 +33,10 @@ public class Controller {
     private TaskList loadTasks() {
         try {
             List<Task> loadedTasks = storage.load();
-            return new TaskList(ui, loadedTasks);
+            return new TaskList(loadedTasks);
         } catch (IOException e) {
             ui.printText("Error loading data. Starting with empty task list");
-            return new TaskList(ui, new ArrayList<>());
+            return new TaskList(new ArrayList<>());
         }
     }
 
