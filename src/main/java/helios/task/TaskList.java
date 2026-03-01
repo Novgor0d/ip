@@ -18,11 +18,9 @@ public class TaskList {
 
     /**
      * Adds a task
-     * @return The added Task object, or null if list is full/input is invalid
      */
-    public Task addTask(Task task) throws HeliosException {
+    public void addTask(Task task) throws HeliosException {
         tasks.add(task);
-        return task;
     }
 
     public void printTasks() {
@@ -38,20 +36,18 @@ public class TaskList {
         ui.printLine();
     }
 
-    public boolean markTaskAsDone(int index) throws HeliosException {
+    public void markTaskAsDone(int index) throws HeliosException {
         if (!isValidIndex(index)) {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
         tasks.get(index).markDone();
-        return true;
     }
 
-    public boolean unmarkTaskAsDone (int index) throws HeliosException {
+    public void unmarkTaskAsDone (int index) throws HeliosException {
         if (!isValidIndex(index)) {
             throw new HeliosException("Invalid task number: " + (index + 1));
         }
         tasks.get(index).markUndone();
-        return true;
     }
 
     public Task retrieveTask(int index) throws HeliosException {

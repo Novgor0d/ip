@@ -1,5 +1,6 @@
 package helios.parser;
 
+import helios.command.*;
 import helios.exception.HeliosException;
 import helios.task.Deadline;
 import helios.task.Event;
@@ -7,6 +8,12 @@ import helios.task.Task;
 import helios.task.Todo;
 
 public class Parser {
+
+    private static final String CMD_BYE = "bye";
+    private static final String CMD_LIST = "list";
+    private static final String CMD_MARK = "mark";
+    private static final String CMD_UNMARK = "unmark";
+    private static final String CMD_DELETE = "delete";
 
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
@@ -23,6 +30,47 @@ public class Parser {
         }
 
         return trimmed.split(" ");
+    }
+
+    public static Command parseCommand(String input) throws HeliosException {
+        String[] parts = parse(input);
+        String action = parts[0];
+
+        switch (action) {
+        case CMD_BYE:
+            return new ExitCommand();
+        case CMD_LIST:
+            return new ListCommand();
+        case CMD_MARK:
+            checkArgsLength(parts, 2);
+            int markIndex = parseIndex(parts[1]);
+            return new MarkCommand(markIndex);
+        case CMD_UNMARK:
+            checkArgsLength(parts, 2);
+            int unmarkIndex = parseIndex(parts[1]);
+            return new UnmarkCommand(unmarkIndex);
+        case CMD_DELETE:
+            checkArgsLength(parts, 2);
+            int deleteIndex = parseIndex(parts[1]);
+            return new DeleteCommand(deleteIndex);
+        default:
+            Task task = parseTask(input);
+            return new AddCommand(task);
+        }
+    }
+
+    private static int parseIndex(String str) throws HeliosException {
+        try {
+            return Integer.parseInt(str) - 1; // converting the index to 0-based
+        } catch (NumberFormatException e) {
+            throw new HeliosException("Task number must be a valid integer.");
+        }
+    }
+
+    private static void checkArgsLength(String[] parts, int expected) throws HeliosException {
+        if (parts.length < expected) {
+            throw new HeliosException("Miising argument(s) fro command.");
+        }
     }
 
     public static Task parseTask(String input) throws HeliosException {
