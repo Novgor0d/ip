@@ -8,14 +8,6 @@ import java.util.List;
 
 public class TaskList {
 
-    private static final String TYPE_TODO = "todo";
-    private static final String TYPE_EVENT = "event";
-    private static final String TYPE_DEADLINE = "deadline";
-    private static final String DELIMITER_BY = " /by ";
-    private static final String DELIMITER_FROM = " /from ";
-    private static final String DELIMITER_TO = " /to ";
-
-
     private final List<Task> tasks;
     private Ui ui;
 
