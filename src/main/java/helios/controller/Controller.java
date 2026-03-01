@@ -5,6 +5,7 @@ import helios.task.Task;
 import helios.task.TaskList;
 import helios.ui.Ui;
 import helios.storage.Storage;
+import helios.parser.Parser;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -75,11 +76,7 @@ public class Controller {
         }
     }
     private void handleTaskModification(String command) throws HeliosException {
-        String[] parts = command.trim().split(" "); // trim to avoid leading/trailing spaces
-
-        if (parts.length == 0 || parts[0].isEmpty()) {
-            throw new HeliosException("Command cannot be empty");
-        }
+        String[] parts = Parser.parse(command);
         String action = parts[0];
 
         if (action.equals(CMD_MARK) && parts.length == 2) {
