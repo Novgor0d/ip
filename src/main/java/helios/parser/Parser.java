@@ -92,7 +92,7 @@ public class Parser {
         case TYPE_EVENT:
             return createEventTask(description);
         default:
-            throw new HeliosException(String.format(Messages.MESSAGE_UNKOWN_TASK_TYPE, type)); // Unknown task type
+            throw new HeliosException(String.format(Messages.MESSAGE_UNKNOWN_TASK_TYPE, type)); // Unknown task type
         }
     }
 
