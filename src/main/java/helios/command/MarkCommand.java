@@ -1,6 +1,7 @@
 package helios.command;
 
 import java.io.IOException;
+import helios.common.Messages;
 import helios.exception.HeliosException;
 import helios.storage.Storage;
 import helios.task.TaskList;
@@ -15,12 +16,12 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws HeliosException {
             tasks.markTaskAsDone(index);
-            ui.printText("Nice! I've marked this task as done:\n" + tasks.retrieveTask(index));
+            ui.printText(String.format(Messages.MESSAGE_TASK_MARKED, tasks.retrieveTask(index)));
 
         try {
             storage.save(tasks.getTasks());
         } catch (IOException e) {
-            throw new HeliosException("Error saving data");
+            throw new HeliosException(Messages.MESSAGE_SAVING_ERROR);
         }
     }
 }

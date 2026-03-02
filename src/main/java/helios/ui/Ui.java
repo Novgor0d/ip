@@ -1,5 +1,6 @@
 package helios.ui;
 
+import helios.common.Messages;
 import helios.task.Task;
 import helios.task.TaskList;
 
@@ -7,7 +8,6 @@ import java.util.Scanner;
 import java.util.List;
 
 public class Ui {
-    private static final String LINE_SEPARATOR = ("_________________________________________");
     private static final String PROMPT = "> ";
     private static final String logo = """
           _____                    _____                    _____            _____                   _______                   _____
@@ -36,11 +36,11 @@ public class Ui {
 
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + logo);
-        printText("Hello!, I'm Helios\nWhat can I do for you?");
+        printText(String.format(Messages.MESSAGE_WELCOME));
     }
 
     public void printGoodbyeMessage() {
-        printText("Bye. Hope to see you again soon!");
+        printText(String.format(Messages.MESSAGE_GOODBYE));
     }
 
     /**
@@ -66,7 +66,7 @@ public class Ui {
      */
 
     public void printLine() {
-        System.out.println(LINE_SEPARATOR);
+        System.out.println(Messages.LINE_SEPARATOR);
     }
 
     /**

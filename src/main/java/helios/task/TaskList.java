@@ -1,5 +1,6 @@
 package helios.task;
 
+import helios.common.Messages;
 import helios.exception.HeliosException;
 
 import java.util.ArrayList;
@@ -23,21 +24,21 @@ public class TaskList {
 
     public void markTaskAsDone(int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new HeliosException("Invalid task number: " + (index + 1));
+            throw new HeliosException(String.format(Messages.MESSAGE_INVALID_TASK_NUMBER, (index + 1)));
         }
         tasks.get(index).markDone();
     }
 
     public void unmarkTaskAsDone (int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new HeliosException("Invalid task number: " + (index + 1));
+            throw new HeliosException(String.format(Messages.MESSAGE_INVALID_TASK_NUMBER, (index + 1)));
         }
         tasks.get(index).markUndone();
     }
 
     public Task retrieveTask(int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new HeliosException("Invalid task number: " + (index + 1));
+            throw new HeliosException(String.format(Messages.MESSAGE_INVALID_TASK_NUMBER, (index + 1)));
         }
         return tasks.get(index);
     }
@@ -52,7 +53,7 @@ public class TaskList {
 
     public Task deleteTask(int index) throws HeliosException {
         if (!isValidIndex(index)) {
-            throw new HeliosException("Invalid task number: " + (index + 1));
+            throw new HeliosException(String.format(Messages.MESSAGE_INVALID_TASK_NUMBER, (index + 1)));
         }
         return tasks.remove(index);
     }

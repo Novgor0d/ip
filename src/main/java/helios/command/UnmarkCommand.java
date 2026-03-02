@@ -1,6 +1,7 @@
 package helios.command;
 
 import java.io.IOException;
+import helios.common.Messages;
 import helios.exception.HeliosException;
 import helios.storage.Storage;
 import helios.task.TaskList;
@@ -16,12 +17,12 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws HeliosException {
             tasks.unmarkTaskAsDone(index);
-            ui.printText("OK, I've marked this task as not done yet:\n" + tasks.retrieveTask(index));
+            ui.printText(String.format(Messages.MESSAGE_TASK_UNMARKED, tasks.retrieveTask(index)));
 
         try {
             storage.save(tasks.getTasks());
         } catch (IOException e) {
-            throw new HeliosException("Error saving data");
+            throw new HeliosException(Messages.MESSAGE_SAVING_ERROR);
         }
     }
 }

@@ -1,6 +1,7 @@
 package helios.controller;
 
 import helios.command.Command;
+import helios.common.Messages;
 import helios.exception.HeliosException;
 import helios.task.Task;
 import helios.task.TaskList;
@@ -35,7 +36,7 @@ public class Controller {
             List<Task> loadedTasks = storage.load();
             return new TaskList(loadedTasks);
         } catch (IOException e) {
-            ui.printText("Error loading data. Starting with empty task list");
+            ui.printText(Messages.MESSAGE_LOADING_ERROR);
             return new TaskList(new ArrayList<>());
         }
     }

@@ -1,6 +1,7 @@
 package helios.parser;
 
 import helios.command.*;
+import helios.common.Messages;
 import helios.exception.HeliosException;
 import helios.task.Deadline;
 import helios.task.Event;
@@ -18,6 +19,7 @@ public class Parser {
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
     private static final String TYPE_DEADLINE = "deadline";
+
     private static final String DELIMITER_BY = " /by ";
     private static final String DELIMITER_FROM = " /from ";
     private static final String DELIMITER_TO = " /to ";
@@ -26,7 +28,7 @@ public class Parser {
         String trimmed = input.trim(); // trim to avoid leading/trailing spaces
 
         if (trimmed.isEmpty()) {
-            throw new HeliosException("Command cannot be empty");
+            throw new HeliosException(Messages.MESSAGE_EMPTY_COMMAND);
         }
 
         return trimmed.split(" ");
@@ -63,20 +65,20 @@ public class Parser {
         try {
             return Integer.parseInt(str) - 1; // converting the index to 0-based
         } catch (NumberFormatException e) {
-            throw new HeliosException("Task number must be a valid integer.");
+            throw new HeliosException(Messages.MESSAGE_TASK_NUMBER_NOT_INTEGER);
         }
     }
 
     private static void checkArgsLength(String[] parts, int expected) throws HeliosException {
         if (parts.length < expected) {
-            throw new HeliosException("Miising argument(s) fro command.");
+            throw new HeliosException(Messages.MESSAGE_MISSING_ARGUMENTS);
         }
     }
 
     public static Task parseTask(String input) throws HeliosException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2) {
-            throw new HeliosException("Task description cannot be empty"); // Invalid input being given
+            throw new HeliosException(Messages.MESSAGE_TASK_DESCRIPTION_EMPTY); // Invalid input being given
         }
 
         String type = parts[0];
@@ -90,7 +92,7 @@ public class Parser {
         case TYPE_EVENT:
             return createEventTask(description);
         default:
-            throw new HeliosException("Unknown task type: " + type); // Unknown task type
+            throw new HeliosException(String.format(Messages.MESSAGE_UNKOWN_TASK_TYPE, type)); // Unknown task type
         }
     }
 

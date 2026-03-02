@@ -1,6 +1,7 @@
 package helios.command;
 
 import java.io.IOException;
+import helios.common.Messages;
 import helios.exception.HeliosException;
 import helios.storage.Storage;
 import helios.task.Task;
@@ -17,11 +18,11 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws HeliosException {
         tasks.addTask(task);
-        ui.printText("Got it. I've added this task:\n " + task + "\nNow you have " + tasks.getCount() + " tasks in the list.");
+        ui.printText(String.format(Messages.MESSAGE_TASK_ADDED, task, tasks.getCount()));
         try {
             storage.save(tasks.getTasks());
         } catch (IOException e) {
-            throw new HeliosException("Error saving data");
+            throw new HeliosException(Messages.MESSAGE_SAVING_ERROR);
         }
 
     }
