@@ -9,7 +9,7 @@
 2. Download the latest `Helios.jar` from the [releases page](https://github.com/Novgor0d/ip/releases).
 3. Open your terminal, navigate to the folder, and run:
  ```
-java -jar helios.jar
+java -jar Helios.jar
  ```
 4. Type your commands in the prompt `> ` and press **Enter**.
 
