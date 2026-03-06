@@ -31,9 +31,9 @@ Adds a simple task without any specific date.
 * **Example:** `todo Read Chapter 3`
 * **Output:**
 ```
-> Got it. I've added this task:
-> [T][ ] Read Chapter 3  
-> Now you have 1 tasks in the list.
+Got it. I've added this task:
+ [T][ ] Read Chapter 3  
+Now you have 1 tasks in the list.
 ```
 
 ### 2. Adding a Deadline: `deadline`
@@ -51,9 +51,9 @@ Displays all tasks currently saved in your list.
 * **Format:** `list`
 * **Example Output:**
 ```
-> Here are the tasks in your list:  
-> 1.[T][ ] Read Chapter 3  
-> 2.[D][ ] Submit assignment (by: Apr 10 2026 18:00)
+Here are the tasks in your list:  
+ 1.[T][ ] Read Chapter 3  
+ 2.[D][ ] Submit assignment (by: Apr 10 2026 18:00)
 ```
 
 ### 5. Listing Tasks on a Specific Date: `listOnDate`
@@ -62,8 +62,8 @@ Filters and displays only the deadlines occurring on a specific date.
 * **Example:** `listOnDate 2026-04-10`
 * **Output:**
 ```
-> Tasks on 2026-04-10:
-> 1. [D][ ] Submit assignment (by: Apr 10 2026 18:00)
+Tasks on 2026-04-10:
+ 1. [D][ ] Submit assignment (by: Apr 10 2026 18:00)
 ```
 
 ### 6. Marking a Task: `mark`
@@ -72,8 +72,8 @@ Marks the task at the specified index as completed.
 * **Example:** `mark 1`
 * **Output:**
 ```
-> Nice! I've marked this task as done:
-> [T][X] Read Chapter 3
+Nice! I've marked this task as done:
+ [T][X] Read Chapter 3
 ```
 
 ### 7. Unmarking a Task: `unmark`
