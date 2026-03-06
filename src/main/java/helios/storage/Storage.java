@@ -5,6 +5,7 @@ import helios.task.*;
 
 import java.io.*;
 import java.nio.file.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,7 +92,7 @@ public class Storage {
 
         if (task instanceof Deadline) {
             Deadline d = (Deadline) task;
-            return "D | " + status + " | " + d.getDescription() + " | " + d.getBy();
+            return "D | " + status + " | " + d.getDescription() + " | " + d.getBy().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         }
 
         if (task instanceof Event) {

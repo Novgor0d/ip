@@ -1,5 +1,6 @@
 package helios.parser;
 
+import java.time.LocalDate;
 import helios.command.*;
 import helios.common.Messages;
 import helios.exception.HeliosException;
@@ -15,6 +16,7 @@ public class Parser {
     private static final String CMD_MARK = "mark";
     private static final String CMD_UNMARK = "unmark";
     private static final String CMD_DELETE = "delete";
+    private static final String CMD_LIST_ON_DATE = "listOnDate";
 
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
@@ -55,6 +57,15 @@ public class Parser {
             checkArgsLength(parts, 2);
             int deleteIndex = parseIndex(parts[1]);
             return new DeleteCommand(deleteIndex);
+        case CMD_LIST_ON_DATE:
+            checkArgsLength(parts, 2);
+            LocalDate queryDate;
+            try {
+                queryDate = LocalDate.parse(parts[1].trim());
+            } catch (Exception e) {
+                throw new HeliosException("Invalid date format. Use yyyy-MM-dd");
+            }
+            return new ListOnDateCommand(queryDate);
         default:
             Task task = parseTask(input);
             return new AddCommand(task);
@@ -82,7 +93,7 @@ public class Parser {
         }
 
         String type = parts[0];
-        String description = parts[1];
+        String description = (parts.length > 1) ? parts[1] : "";
 
         switch (type) {
         case TYPE_TODO:
@@ -99,9 +110,9 @@ public class Parser {
     private static Task createDeadlineTask(String description) throws HeliosException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
-            throw new HeliosException("Deadline task must be in the format: deadline <desc> /by <date>");
+            throw new HeliosException(" Deadline task must be in the format: deadline <desc> /by <date>");
         }
-        return new Deadline(dlParts[0], dlParts[1]);
+        return new Deadline(dlParts[0].trim(), dlParts[1].trim());
     }
 
     private static Task createEventTask(String description) throws HeliosException {
