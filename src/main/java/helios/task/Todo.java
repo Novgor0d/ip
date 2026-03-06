@@ -1,5 +1,8 @@
 package helios.task;
 
+/**
+ * Represents a basic task without any specific date or time constraints.
+ */
 public class Todo extends Task {
 
     /**
@@ -10,6 +13,10 @@ public class Todo extends Task {
         super(description);
     }
 
+    /**
+     * Returns a string representation of the Todo task.
+     * @return A formatted string representing the todo.
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

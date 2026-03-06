@@ -7,6 +7,10 @@ import helios.task.TaskList;
 import java.util.Scanner;
 import java.util.List;
 
+/**
+ * Handles the user interface of Helios.
+ * Responsible for reading user input and displaying messages, tasks, and errors to the console.
+ */
 public class Ui {
     private static final String PROMPT = "> ";
     private static final String logo = """
@@ -34,11 +38,17 @@ public class Ui {
 
     private final Scanner in = new Scanner(System.in);
 
+    /**
+     * displays the ASCII logo along with a welcome message to the user.
+     */
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + logo);
         printText(String.format(Messages.MESSAGE_WELCOME));
     }
 
+    /**
+     * Displays the goodbye message to the user.
+     */
     public void printGoodbyeMessage() {
         printText(String.format(Messages.MESSAGE_GOODBYE));
     }
@@ -64,7 +74,6 @@ public class Ui {
     /**
      * Prints a horizontal line to separate sections
      */
-
     public void printLine() {
         System.out.println(Messages.LINE_SEPARATOR);
     }
@@ -78,6 +87,11 @@ public class Ui {
         return in.nextLine();
     }
 
+    /**
+     * Displays all tasks currently in the provided task list.
+     * If the list is empty, an appropriate message is shown.
+     * @param taskList The TaskList object containing the tasks to be displayed.
+     */
     public void displayTasks(TaskList taskList) {
         printLine();
         List<Task> tasks = taskList.getTasks();
@@ -92,6 +106,9 @@ public class Ui {
         printLine();
     }
 
+    /**
+     * Closes the input stream used by the interface.
+     */
     public void close() {
         in.close();
     }
