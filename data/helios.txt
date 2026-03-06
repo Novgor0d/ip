@@ -7,3 +7,4 @@ T | 0 | Read book
 D | 0 | Submit assignment | 2026-02-10 0000
 E | 0 | Team meeting | 2026-02-07 | 2026-02-07
 E | 0 | Hackathon | 2026-03-05 0900 | 2026-03-06 1800
+T | 0 | read book

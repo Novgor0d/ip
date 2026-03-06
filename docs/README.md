@@ -35,6 +35,7 @@ Adds a simple task without any specific date.
 > [T][ ] Read Chapter 3  
 > Now you have 1 task in the list.
 ```
+
 ### 2. Adding a Deadline: `deadline`
 Adds a task that needs to be done before a specific date/time.
 * **Format:** `deadline DESCRIPTION /by YYYY-MM-DD [HHmm]`
@@ -54,6 +55,7 @@ Displays all tasks currently saved in your list.
 > 1.[T][ ] Read Chapter 3  
 > 2.[D][ ] Submit assignment (by: Apr 10 2026 18:00)
 ```
+
 ### 5. Listing Tasks on a Specific Date: `listOnDate`
 Filters and displays only the deadlines occurring on a specific date.
 * **Format:** `listOnDate YYYY-MM-DD`
@@ -63,6 +65,7 @@ Filters and displays only the deadlines occurring on a specific date.
 > Tasks on 2026-04-10:
 > 1. [D][ ] Submit assignment (by: Apr 10 2026 18:00)
 ```
+
 ### 6. Marking a Task: `mark`
 Marks the task at the specified index as completed.
 * **Format:** `mark TASK_NUMBER`
@@ -76,6 +79,7 @@ Marks the task at the specified index as completed.
 ### 7. Unmarking a Task: `unmark`
 Reverts a completed task back to "not done".
 * **Format:** `unmark TASK_NUMBER`
+* **Example:** `unmark 1`
 
 ### 8. Deleting a Task: `delete`
 Removes a task from the list permanently.
