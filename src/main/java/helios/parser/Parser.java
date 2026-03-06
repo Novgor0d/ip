@@ -82,7 +82,7 @@ public class Parser {
             try {
                 queryDate = LocalDate.parse(parts[1].trim());
             } catch (Exception e) {
-                throw new HeliosException("Invalid date format. Use yyyy-MM-dd (ensure date and year are correct");
+                throw new HeliosException("Invalid date. Use yyyy-MM-dd (ensure date and year are correct)");
             }
             return new ListOnDateCommand(queryDate);
         case CMD_FIND:
