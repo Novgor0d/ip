@@ -6,9 +6,9 @@
 
 ## Quick Start
 1. Ensure you have **Java 17** installed.
-2. Download the latest `helios.jar` from our [releases page](#).
+2. Download the latest `helios.jar` from the [releases page](https://github.com/Novgor0d/ip/releases).
 3. Open your terminal, navigate to the folder, and run:
- ```bash
+ ```
 java -jar helios.jar
  ```
 4. Type your commands in the prompt `> ` and press **Enter**.
@@ -30,7 +30,7 @@ Adds a simple task without any specific date.
 * **Format:** `todo DESCRIPTION`
 * **Example:** `todo Read Chapter 3`
 * **Output:** 
-```bash
+```
 > Got it. I've added this task:
 > [T][ ] Read Chapter 3  
 > Now you have 1 task in the list.
@@ -49,7 +49,7 @@ Adds a task that occurs within a specific time range.
 Displays all tasks currently saved in your list.
 * **Format:** `list`
 * **Example Output:**
-```bash
+```
 > Here are the tasks in your list:  
 > 1.[T][ ] Read Chapter 3  
 > 2.[D][ ] Submit assignment (by: Apr 10 2026 18:00)
@@ -59,7 +59,7 @@ Filters and displays only the deadlines occurring on a specific date.
 * **Format:** `listOnDate YYYY-MM-DD`
 * **Example:** `listOnDate 2026-04-10`
 * **Output:**
-```bash
+```
 > Tasks on 2026-04-10:
 > 1. [D][ ] Submit assignment (by: Apr 10 2026 18:00)
 ```
@@ -68,7 +68,7 @@ Marks the task at the specified index as completed.
 * **Format:** `mark TASK_NUMBER`
 * **Example:** `mark 1`
 * **Output:** 
-```bash
+```
 > Nice! I've marked this task as done:
 > [T][X] Read Chapter 3
 ```
