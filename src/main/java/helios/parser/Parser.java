@@ -17,7 +17,7 @@ public class Parser {
     private static final String CMD_UNMARK = "unmark";
     private static final String CMD_DELETE = "delete";
     private static final String CMD_LIST_ON_DATE = "listOnDate";
-
+    private static final String CMD_FIND = "find";
     private static final String TYPE_TODO = "todo";
     private static final String TYPE_EVENT = "event";
     private static final String TYPE_DEADLINE = "deadline";
@@ -66,6 +66,10 @@ public class Parser {
                 throw new HeliosException("Invalid date format. Use yyyy-MM-dd");
             }
             return new ListOnDateCommand(queryDate);
+        case CMD_FIND:
+            checkArgsLength(parts, 2);
+            String keyword = input.substring(5); // removing "find" from query
+            return new FindCommand(keyword);
         default:
             Task task = parseTask(input);
             return new AddCommand(task);
