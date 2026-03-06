@@ -1,8 +1,30 @@
 todo Read book
 deadline Submit assignment /by 2026-02-10
 event Team meeting /from 2026-02-07 /to 2026-02-07
-list
-mark 2
+deadline Finish report /by 2026-03-06 2359
+event Hackathon /from 2026-03-05 0900 /to 2026-03-06 1800
+todo
+deadline /by 2026-04-01
+event /from 2026-04-01 /to 2026-04-01
+deadline Submit draft /by 2026-2-5
+event Workshop /from 2026-03-10 /to 2026-03-09
+deadline Exam /by 2026-13-01
+deadline Project /by 2026-02-30
+remind Buy groceries
+appointment Doctor visit /from 2026-02-12 /to 2026-02-12
+mark 1
+mark 10
 unmark 2
-mark 5
+unmark -1
+list
+list 2026-03-06
+list 2026-02-29
+find report
+find Meeting
+find Hackathon
+find xyz
+mark 3
+unmark 3
+todo Read book again
+deadline Another deadline /by 2026-04-15 1200
 bye

@@ -31,7 +31,7 @@ Now you have 1 tasks in the list.
 _________________________________________
 > _________________________________________
 Got it. I've added this task:
- [D][ ] Submit assignment (by: 2026-02-10)
+ [D][ ] Submit assignment (by: Feb 10 2026 00:00)
 Now you have 2 tasks in the list.
 _________________________________________
 > _________________________________________
@@ -40,21 +40,124 @@ Got it. I've added this task:
 Now you have 3 tasks in the list.
 _________________________________________
 > _________________________________________
-Here are the tasks in your list:
-1.[T][ ] Read book
-2.[D][ ] Submit assignment (by: 2026-02-10)
-3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+Got it. I've added this task:
+ [D][ ] Finish report (by: Mar 06 2026 23:59)
+Now you have 4 tasks in the list.
+_________________________________________
+> _________________________________________
+Got it. I've added this task:
+ [E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
+Now you have 5 tasks in the list.
+_________________________________________
+> _________________________________________
+Task description cannot be empty
+_________________________________________
+> _________________________________________
+ Deadline task must be in the format: deadline <desc> /by <date>
+_________________________________________
+> _________________________________________
+Event task must include /from <start>
+_________________________________________
+> _________________________________________
+Deadline task must be in the format: deadline <desc> /by <date> [HHmm]
+Example (date only): deadline submit report /by 2026-03-06
+Example (date + time): deadline submit report /by 2026-03-06 1800
+_________________________________________
+> _________________________________________
+Got it. I've added this task:
+ [E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
+Now you have 6 tasks in the list.
+_________________________________________
+> _________________________________________
+Deadline task must be in the format: deadline <desc> /by <date> [HHmm]
+Example (date only): deadline submit report /by 2026-03-06
+Example (date + time): deadline submit report /by 2026-03-06 1800
+_________________________________________
+> _________________________________________
+Got it. I've added this task:
+ [D][ ] Project (by: Feb 28 2026 00:00)
+Now you have 7 tasks in the list.
+_________________________________________
+> _________________________________________
+Unknown task type: remind
+_________________________________________
+> _________________________________________
+Unknown task type: appointment
 _________________________________________
 > _________________________________________
 Nice! I've marked this task as done:
-[D][X] Submit assignment (by: 2026-02-10)
+[T][X] Read book
+_________________________________________
+> _________________________________________
+Invalid task number: 10
 _________________________________________
 > _________________________________________
 OK, I've marked this task as not done yet:
-[D][ ] Submit assignment (by: 2026-02-10)
+[D][ ] Submit assignment (by: Feb 10 2026 00:00)
 _________________________________________
 > _________________________________________
-Invalid task number: 5
+Invalid task number: -1
+_________________________________________
+> _________________________________________
+Here are the tasks in your list:
+1.[T][X] Read book
+2.[D][ ] Submit assignment (by: Feb 10 2026 00:00)
+3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+4.[D][ ] Finish report (by: Mar 06 2026 23:59)
+5.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
+6.[E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
+7.[D][ ] Project (by: Feb 28 2026 00:00)
+_________________________________________
+> _________________________________________
+Here are the tasks in your list:
+1.[T][X] Read book
+2.[D][ ] Submit assignment (by: Feb 10 2026 00:00)
+3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+4.[D][ ] Finish report (by: Mar 06 2026 23:59)
+5.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
+6.[E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
+7.[D][ ] Project (by: Feb 28 2026 00:00)
+_________________________________________
+> _________________________________________
+Here are the tasks in your list:
+1.[T][X] Read book
+2.[D][ ] Submit assignment (by: Feb 10 2026 00:00)
+3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+4.[D][ ] Finish report (by: Mar 06 2026 23:59)
+5.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
+6.[E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
+7.[D][ ] Project (by: Feb 28 2026 00:00)
+_________________________________________
+> _________________________________________
+Here are the matching tasks in your list:
+1.[D][ ] Finish report (by: Mar 06 2026 23:59)
+_________________________________________
+> _________________________________________
+Here are the matching tasks in your list:
+1.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+_________________________________________
+> _________________________________________
+Here are the matching tasks in your list:
+1.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
+_________________________________________
+> No tasks found matching: xyz
+> _________________________________________
+Nice! I've marked this task as done:
+[E][X] Team meeting (from: 2026-02-07 to: 2026-02-07)
+_________________________________________
+> _________________________________________
+OK, I've marked this task as not done yet:
+[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
+_________________________________________
+> _________________________________________
+Got it. I've added this task:
+ [T][ ] Read book again
+Now you have 8 tasks in the list.
+_________________________________________
+> _________________________________________
+Got it. I've added this task:
+ [D][ ] Another deadline (by: Apr 15 2026 12:00)
+Now you have 9 tasks in the list.
 _________________________________________
 > _________________________________________
 Bye. Hope to see you again soon!

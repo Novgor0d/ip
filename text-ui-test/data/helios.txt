@@ -1,0 +1,18 @@
+T | 1 | Read book
+D | 0 | Submit assignment | 2026-02-10 0000
+E | 0 | Team meeting | 2026-02-07 | 2026-02-07
+D | 0 | Finish report | 2026-03-06 2359
+E | 0 | Hackathon | 2026-03-05 0900 | 2026-03-06 1800
+E | 0 | Workshop | 2026-03-10 | 2026-03-09
+D | 0 | Project | 2026-02-28 0000
+T | 0 | Read book again
+D | 0 | Another deadline | 2026-04-15 1200
+T | 1 | Read book
+D | 0 | Submit assignment | 2026-02-10 0000
+E | 0 | Team meeting | 2026-02-07 | 2026-02-07
+D | 0 | Finish report | 2026-03-06 2359
+E | 0 | Hackathon | 2026-03-05 0900 | 2026-03-06 1800
+E | 0 | Workshop | 2026-03-10 | 2026-03-09
+D | 0 | Project | 2026-02-28 0000
+T | 0 | Read book again
+D | 0 | Another deadline | 2026-04-15 1200
