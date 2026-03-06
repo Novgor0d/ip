@@ -6,7 +6,7 @@
 
 ## Quick Start
 1. Ensure you have **Java 17** installed.
-2. Download the latest `helios.jar` from the [releases page](https://github.com/Novgor0d/ip/releases).
+2. Download the latest `Helios.jar` from the [releases page](https://github.com/Novgor0d/ip/releases).
 3. Open your terminal, navigate to the folder, and run:
  ```
 java -jar helios.jar
@@ -33,7 +33,7 @@ Adds a simple task without any specific date.
 ```
 > Got it. I've added this task:
 > [T][ ] Read Chapter 3  
-> Now you have 1 task in the list.
+> Now you have 1 tasks in the list.
 ```
 
 ### 2. Adding a Deadline: `deadline`
