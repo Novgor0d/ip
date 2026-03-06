@@ -82,7 +82,7 @@ public class Parser {
         }
 
         String type = parts[0];
-        String description = parts[1];
+        String description = (parts.length > 1) ? parts[1] : "";
 
         switch (type) {
         case TYPE_TODO:
@@ -99,9 +99,9 @@ public class Parser {
     private static Task createDeadlineTask(String description) throws HeliosException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
-            throw new HeliosException("Deadline task must be in the format: deadline <desc> /by <date>");
+            throw new HeliosException(" Deadline task must be in the format: deadline <desc> /by <date>");
         }
-        return new Deadline(dlParts[0], dlParts[1]);
+        return new Deadline(dlParts[0].trim(), dlParts[1].trim());
     }
 
     private static Task createEventTask(String description) throws HeliosException {
