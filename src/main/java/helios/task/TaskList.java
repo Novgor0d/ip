@@ -17,6 +17,7 @@ public class TaskList {
 
     /**
      * Constructs a TaskList with a pre-existing list of tasks.
+     *
      * @param loadedTasks The list of tasks loaded from storage.
      */
     public TaskList(List<Task> loadedTasks) {
@@ -25,6 +26,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the list.
+     *
      * @param task The task object to be added.
      */
     public void addTask(Task task) {
@@ -33,7 +35,8 @@ public class TaskList {
 
     /**
      * Marks a specific task as completed based on its index.
-     * @param index The zero-based index of the task.
+     *
+     * @param index            The zero-based index of the task.
      * @throws HeliosException If the provided index is out of bounds.
      */
     public void markTaskAsDone(int index) throws HeliosException {
@@ -45,7 +48,8 @@ public class TaskList {
 
     /**
      * Marks a specific task as not completed based on its index.
-     * @param index The zero-based index of the task.
+     *
+     * @param index            The zero-based index of the task.
      * @throws HeliosException If the provided index is out of bounds.
      */
     public void unmarkTaskAsDone (int index) throws HeliosException {
@@ -57,8 +61,8 @@ public class TaskList {
 
     /**
      * Retrieves a task from the list at the specified index.
-     * @param index The zero-based index of the task.
-     * @return The Task object at that index.
+     * @param index            The zero-based index of the task.
+     * @return                 The Task object at that index.
      * @throws HeliosException If the provided index is out of bounds.
      */
     public Task retrieveTask(int index) throws HeliosException {
@@ -74,6 +78,7 @@ public class TaskList {
 
     /**
      * Returns the total number of tasks currently in the list.
+     *
      * @return The size of the task list.
      */
     public int getCount() {
@@ -82,8 +87,9 @@ public class TaskList {
 
     /**
      * Removes a task from the list based on its index.
-     * @param index The zero-based index of the task to be deleted.
-     * @return The Task object that was removed.
+     *
+     * @param index            The zero-based index of the task to be deleted.
+     * @return                 The Task object that was removed.
      * @throws HeliosException If the provided index is out of bounds.
      */
     public Task deleteTask(int index) throws HeliosException {
@@ -95,6 +101,7 @@ public class TaskList {
 
     /**
      * Returns the underlying list of tasks.
+     *
      * @return A List containing all Task objects.
      */
     public List<Task> getTasks() {

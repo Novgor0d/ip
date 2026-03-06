@@ -17,6 +17,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructs a FindCommand with the specified search keyword.
+     *
      * @param keyword The string to search for within task descriptions
      */
     public FindCommand(String keyword) {
@@ -25,9 +26,10 @@ public class FindCommand extends Command {
 
     /**
      * Executes the find command by filtering the task list and displaying matches to the user
-     * @param tasks The list of tasks to search through.
-     * @param ui The user interface to display the results.
-     * @param storage The storage component (not used by this command).
+     *
+     * @param tasks            The list of tasks to search through.
+     * @param ui               The user interface to display the results.
+     * @param storage          The storage component (not used by this command).
      * @throws HeliosException HeliosException If an error occurs during execution.
      */
     @Override

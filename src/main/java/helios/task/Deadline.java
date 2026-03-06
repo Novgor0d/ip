@@ -21,8 +21,9 @@ public class Deadline extends Task {
     /**
      * Constructs a Deadline task.
      * Supports formats "yyyy-MM-dd" and "yyyy-MM-dd HHmm".
-     * @param description The description of the task.
-     * @param by The deadline date/time.
+     *
+     * @param description      The description of the task.
+     * @param by               The deadline date/time.
      * @throws HeliosException If the date/time format is invalid or the date does not exist.
      */
     public Deadline(String description, String by) throws HeliosException {
@@ -48,6 +49,7 @@ public class Deadline extends Task {
     /**
      * Returns the string representation of the Deadline task,
      * including the formatted date/time.
+     *
      * @return Formatted string including type, status, description, and deadline.
      */
     @Override

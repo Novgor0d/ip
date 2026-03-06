@@ -25,9 +25,10 @@ public class MarkCommand extends Command {
     /**
      * Executes the mark command. It marks the task as done, displays a success
      * message via the UI, and saves the updated list to the storage file.
-     * @param tasks The list containing the task to be marked.
-     * @param ui The user interface to display confirmation.
-     * @param storage The storage component to save changes.
+     *
+     * @param tasks            The list containing the task to be marked.
+     * @param ui               The user interface to display confirmation.
+     * @param storage          The storage component to save changes.
      * @throws HeliosException If the index is invalid or if there is an error saving to disk.
      */
     @Override

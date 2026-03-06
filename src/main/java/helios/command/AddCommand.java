@@ -26,9 +26,10 @@ public class AddCommand extends Command {
     /**
      * Executes the command by adding the task to the task list,
      * notifying the user via the UI, and saving the changes to the storage file.
-     * @param tasks The list of tasks where the new task will be stored.
-     * @param ui The user interface to display confirmation to the user.
-     * @param storage The storage component used to persist the task list.
+     *
+     * @param tasks            The list of tasks where the new task will be stored.
+     * @param ui               The user interface to display confirmation to the user.
+     * @param storage          The storage component used to persist the task list.
      * @throws HeliosException If there is an error saving the tasks.
      */
     @Override

@@ -25,9 +25,10 @@ public class UnmarkCommand extends Command {
     /**
      * Executes the unmark command. It reverts the task status to not done,
      * informs the user of the change, and persists the updated list to storage.
-     * @param tasks The list of tasks containing the target task.
-     * @param ui The user interface used to display the result.
-     * @param storage The storage component used to save the updated task list.
+     *
+     * @param tasks            The list of tasks containing the target task.
+     * @param ui               The user interface used to display the result.
+     * @param storage          The storage component used to save the updated task list.
      * @throws HeliosException If the index is out of bounds or if saving to the file fails.
      */
     @Override

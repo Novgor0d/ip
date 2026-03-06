@@ -12,8 +12,9 @@ public class ListCommand extends Command {
 
     /**
      * Executes the list command by triggering the UI to display the current tasks.
-     * @param tasks The task list containing the tasks to be displayed.
-     * @param ui The user interface used to handle the actual printing of the list.
+     *
+     * @param tasks   The task list containing the tasks to be displayed.
+     * @param ui      The user interface used to handle the actual printing of the list.
      * @param storage The storage component (not used by this command).
      */
     @Override

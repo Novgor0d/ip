@@ -33,8 +33,9 @@ public class Parser {
 
     /**
      * Splits the raw input into an array of words, trimmed of leading/trailing spaces.
-     * @param input The raw string from user input.
-     * @return An array of strings split by spaces.
+     *
+     * @param input            The raw string from user input.
+     * @return                 An array of strings split by spaces.
      * @throws HeliosException If the input is empty or blank.
      */
     public static String[] parse(String input) throws HeliosException {
@@ -49,8 +50,8 @@ public class Parser {
 
     /**
      * Interprets user input and returns the corresponding Command object.
-     * @param input The full user input string.
-     * @return A Command subclass for execution.
+     * @param input            The full user input string.
+     * @return                 A Command subclass for execution.
      * @throws HeliosException If arguments are missing, invalid, or the command is unknown.
      */
     public static Command parseCommand(String input) throws HeliosException {
@@ -61,6 +62,7 @@ public class Parser {
         case CMD_BYE:
             return new ExitCommand();
         case CMD_LIST:
+            checkArgsLength(parts, 1);
             return new ListCommand();
         case CMD_MARK:
             checkArgsLength(parts, 2);
@@ -95,8 +97,9 @@ public class Parser {
 
     /**
      * Converts a string representation of a task index into a zero-based integer.
-     * @param str The string containing the number (e.g., "1").
-     * @return The zero-based index
+     *
+     * @param str              The string containing the number (e.g., "1").
+     * @return                 The zero-based index
      * @throws HeliosException If the string is not a valid integer.
      */
     private static int parseIndex(String str) throws HeliosException {
@@ -109,20 +112,22 @@ public class Parser {
 
     /**
      * erifies that the input parts array has at least the expected number of elements.
-     * @param parts The array of input words.
-     * @param expected The minimum required length.
+     *
+     * @param parts            The array of input words.
+     * @param expected         The minimum required length.
      * @throws HeliosException If the array is shorter than expected.
      */
     private static void checkArgsLength(String[] parts, int expected) throws HeliosException {
-        if (parts.length < expected) {
-            throw new HeliosException(Messages.MESSAGE_MISSING_ARGUMENTS);
+        if (parts.length != expected) {
+            throw new HeliosException(Messages.MESSAGE_IMPROPER_ARGUMENTS);
         }
     }
 
     /**
      * Parses input to identify and create the appropriate Task object (Todo, Event, or Deadline).
-     * @param input The full user input string.
-     * @return A Task object.
+     *
+     * @param input            The full user input string.
+     * @return                 A Task object.
      * @throws HeliosException If the task type is unknown or the description is missing.
      */
     public static Task parseTask(String input) throws HeliosException {
@@ -148,8 +153,9 @@ public class Parser {
 
     /**
      * Helper method to handle the specific string splitting required for a Deadline task.
-     * @param description The part of the input after the 'deadline' command.
-     * @return A new Deadline task.
+     *
+     * @param description      The part of the input after the 'deadline' command.
+     * @return                 A new Deadline task.
      * @throws HeliosException If the /by delimiter is missing.
      */
     private static Task createDeadlineTask(String description) throws HeliosException {
@@ -162,8 +168,9 @@ public class Parser {
 
     /**
      * Helper method to handle the complex splitting required for an Event task.
-     * @param description The part of the input after the 'event' command.
-     * @return A new Event task.
+     *
+     * @param description      The part of the input after the 'event' command.
+     * @return                 A new Event task.
      * @throws HeliosException If /from or /to delimiters are missing.
      */
     private static Task createEventTask(String description) throws HeliosException {

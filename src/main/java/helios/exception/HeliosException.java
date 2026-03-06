@@ -9,6 +9,7 @@ public class HeliosException extends Exception {
 
     /**
      * Constructs a HeliosException with the specified detail message.
+     *
      * @param message he error message describing the cause of the exception.
      */
     public HeliosException(String message){

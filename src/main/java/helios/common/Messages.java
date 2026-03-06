@@ -20,7 +20,7 @@ public class Messages {
     // Parser and Input Error Messages
     public static final String MESSAGE_EMPTY_COMMAND = "Command cannot be empty";
     public static final String MESSAGE_TASK_NUMBER_NOT_INTEGER = "Task number must be a valid integer.";
-    public static final String MESSAGE_MISSING_ARGUMENTS = "Missing argument(s) for command.";
+    public static final String MESSAGE_IMPROPER_ARGUMENTS = "Improper argument(s) for command.";
     public static final String MESSAGE_UNKNOWN_TASK_TYPE = "Unknown task type: %s";
 
 

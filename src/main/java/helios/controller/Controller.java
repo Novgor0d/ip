@@ -44,8 +44,9 @@ public class Controller {
     }
 
     /**
-     * oads tasks from the storage file.
+     * Loads tasks from the storage file.
      * If the file cannot be read, it notifies the user and starts with an empty task list.
+     *
      * @return A TaskList populated with loaded tasks or an empty TaskList on error.
      */
     private TaskList loadTasks() {

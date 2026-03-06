@@ -39,7 +39,7 @@ public class Ui {
     private final Scanner in = new Scanner(System.in);
 
     /**
-     * displays the ASCII logo along with a welcome message to the user.
+     * Displays the ASCII logo along with a welcome message to the user.
      */
     public void printWelcomeMessage() {
         System.out.println("Hello from\n" + logo);
@@ -90,6 +90,7 @@ public class Ui {
     /**
      * Displays all tasks currently in the provided task list.
      * If the list is empty, an appropriate message is shown.
+     *
      * @param taskList The TaskList object containing the tasks to be displayed.
      */
     public void displayTasks(TaskList taskList) {

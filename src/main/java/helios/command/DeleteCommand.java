@@ -17,6 +17,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Constructs a DeleteCommand with the specified index of the task to be removed.
+     *
      * @param index The zero-based index of the task in the task list.
      */
     public DeleteCommand(int index) {
@@ -26,9 +27,10 @@ public class DeleteCommand extends Command {
     /**
      * Executes the delete command by removing the task from the list
      * informing the user of the removal, and saving the updated list to storage.
-     * @param tasks The TaskList from which the task will be deleted.
-     * @param ui The user interface to display the deletion confirmation.
-     * @param storage The storage component to persist changes.
+     *
+     * @param tasks            The TaskList from which the task will be deleted.
+     * @param ui               The user interface to display the deletion confirmation.
+     * @param storage          The storage component to persist changes.
      * @throws HeliosException If the index is out of bounds or if saving to disk fails.
      */
     @Override
