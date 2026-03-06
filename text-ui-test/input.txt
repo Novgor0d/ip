@@ -17,8 +17,8 @@ mark 10
 unmark 2
 unmark -1
 list
-list 2026-03-06
-list 2026-02-29
+listOnDate 2026-03-06
+listOnDate 2026-02-29
 find report
 find Meeting
 find Hackathon

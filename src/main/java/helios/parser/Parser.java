@@ -9,6 +9,11 @@ import helios.task.Event;
 import helios.task.Task;
 import helios.task.Todo;
 
+/**
+ * Parses user input strings into executable Command objects or Task objects.
+ * This class handles the logic of validating arguments and identifying command types.
+ *
+ */
 public class Parser {
 
     private static final String CMD_BYE = "bye";
@@ -26,6 +31,12 @@ public class Parser {
     private static final String DELIMITER_FROM = " /from ";
     private static final String DELIMITER_TO = " /to ";
 
+    /**
+     * Splits the raw input into an array of words, trimmed of leading/trailing spaces.
+     * @param input The raw string from user input.
+     * @return An array of strings split by spaces.
+     * @throws HeliosException If the input is empty or blank.
+     */
     public static String[] parse(String input) throws HeliosException {
         String trimmed = input.trim(); // trim to avoid leading/trailing spaces
 
@@ -36,6 +47,12 @@ public class Parser {
         return trimmed.split(" ");
     }
 
+    /**
+     * Interprets user input and returns the corresponding Command object.
+     * @param input The full user input string.
+     * @return A Command subclass for execution.
+     * @throws HeliosException If arguments are missing, invalid, or the command is unknown.
+     */
     public static Command parseCommand(String input) throws HeliosException {
         String[] parts = parse(input);
         String action = parts[0];
@@ -63,7 +80,7 @@ public class Parser {
             try {
                 queryDate = LocalDate.parse(parts[1].trim());
             } catch (Exception e) {
-                throw new HeliosException("Invalid date format. Use yyyy-MM-dd");
+                throw new HeliosException("Invalid date format. Use yyyy-MM-dd (ensure date and year are correct");
             }
             return new ListOnDateCommand(queryDate);
         case CMD_FIND:
@@ -76,6 +93,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a string representation of a task index into a zero-based integer.
+     * @param str The string containing the number (e.g., "1").
+     * @return The zero-based index
+     * @throws HeliosException If the string is not a valid integer.
+     */
     private static int parseIndex(String str) throws HeliosException {
         try {
             return Integer.parseInt(str) - 1; // converting the index to 0-based
@@ -84,12 +107,24 @@ public class Parser {
         }
     }
 
+    /**
+     * erifies that the input parts array has at least the expected number of elements.
+     * @param parts The array of input words.
+     * @param expected The minimum required length.
+     * @throws HeliosException If the array is shorter than expected.
+     */
     private static void checkArgsLength(String[] parts, int expected) throws HeliosException {
         if (parts.length < expected) {
             throw new HeliosException(Messages.MESSAGE_MISSING_ARGUMENTS);
         }
     }
 
+    /**
+     * Parses input to identify and create the appropriate Task object (Todo, Event, or Deadline).
+     * @param input The full user input string.
+     * @return A Task object.
+     * @throws HeliosException If the task type is unknown or the description is missing.
+     */
     public static Task parseTask(String input) throws HeliosException {
         String[] parts = input.split(" ", 2);
         if (parts.length < 2) {
@@ -111,6 +146,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Helper method to handle the specific string splitting required for a Deadline task.
+     * @param description The part of the input after the 'deadline' command.
+     * @return A new Deadline task.
+     * @throws HeliosException If the /by delimiter is missing.
+     */
     private static Task createDeadlineTask(String description) throws HeliosException {
         String[] dlParts = description.split(DELIMITER_BY, 2);
         if (dlParts.length < 2) {
@@ -119,6 +160,12 @@ public class Parser {
         return new Deadline(dlParts[0].trim(), dlParts[1].trim());
     }
 
+    /**
+     * Helper method to handle the complex splitting required for an Event task.
+     * @param description The part of the input after the 'event' command.
+     * @return A new Event task.
+     * @throws HeliosException If /from or /to delimiters are missing.
+     */
     private static Task createEventTask(String description) throws HeliosException {
         String[] fromParts = description.split(DELIMITER_FROM, 2);
         if (fromParts.length < 2) {

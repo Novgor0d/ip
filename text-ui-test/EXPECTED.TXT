@@ -111,24 +111,11 @@ Here are the tasks in your list:
 7.[D][ ] Project (by: Feb 28 2026 00:00)
 _________________________________________
 > _________________________________________
-Here are the tasks in your list:
-1.[T][X] Read book
-2.[D][ ] Submit assignment (by: Feb 10 2026 00:00)
-3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
-4.[D][ ] Finish report (by: Mar 06 2026 23:59)
-5.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
-6.[E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
-7.[D][ ] Project (by: Feb 28 2026 00:00)
+Tasks on 2026-03-06:
+1. [D][ ] Finish report (by: Mar 06 2026 23:59)
 _________________________________________
 > _________________________________________
-Here are the tasks in your list:
-1.[T][X] Read book
-2.[D][ ] Submit assignment (by: Feb 10 2026 00:00)
-3.[E][ ] Team meeting (from: 2026-02-07 to: 2026-02-07)
-4.[D][ ] Finish report (by: Mar 06 2026 23:59)
-5.[E][ ] Hackathon (from: 2026-03-05 0900 to: 2026-03-06 1800)
-6.[E][ ] Workshop (from: 2026-03-10 to: 2026-03-09)
-7.[D][ ] Project (by: Feb 28 2026 00:00)
+Invalid date format. Use yyyy-MM-dd (ensure date and year are correct
 _________________________________________
 > _________________________________________
 Here are the matching tasks in your list:
