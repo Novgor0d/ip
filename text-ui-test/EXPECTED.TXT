@@ -62,6 +62,7 @@ _________________________________________
 Deadline task must be in the format: deadline <desc> /by <date> [HHmm]
 Example (date only): deadline submit report /by 2026-03-06
 Example (date + time): deadline submit report /by 2026-03-06 1800
+Make sure the date is valid, e.g., month 1-12 and correct days per month.
 _________________________________________
 > _________________________________________
 Got it. I've added this task:
@@ -72,6 +73,7 @@ _________________________________________
 Deadline task must be in the format: deadline <desc> /by <date> [HHmm]
 Example (date only): deadline submit report /by 2026-03-06
 Example (date + time): deadline submit report /by 2026-03-06 1800
+Make sure the date is valid, e.g., month 1-12 and correct days per month.
 _________________________________________
 > _________________________________________
 Got it. I've added this task:

@@ -32,8 +32,9 @@ public class Deadline extends Task {
             throw new HeliosException("""
                     Deadline task must be in the format: deadline <desc> /by <date> [HHmm]
                     Example (date only): deadline submit report /by 2026-03-06
-                    Example (date + time): deadline submit report /by 2026-03-06 1800"""
-                    );
+                    Example (date + time): deadline submit report /by 2026-03-06 1800
+                    Make sure the date is valid, e.g., month 1-12 and correct days per month."""
+            );
         }
     }
 

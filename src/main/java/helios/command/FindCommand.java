@@ -23,7 +23,7 @@ public class FindCommand extends Command {
             ui.plainPrint("No tasks found matching: " + keyword);
         } else {
             ui.printLine();
-            ui.plainPrint("Here are the matching tasks in your list: ");
+            ui.plainPrint("Here are the matching tasks in your list:");
             for (int i = 0; i < matching.size(); i++) {
                 ui.plainPrint((i+1) + "." + matching.get(i));
             }
